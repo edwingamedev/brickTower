@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameSessionController : MonoBehaviour
 {
-    private GameMasterState MasterState;
     private GameStateType currentGameStatus = GameStateType.Intro;
 
     private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();

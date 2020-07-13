@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-public class PlayingGameState : AGameState
+namespace EdwinGameDev
 {
-    public override GameStateType StateType { get; set; }
-    public override IInputController InputController { get; set; }
-
-    public PlayingGameState(IInputController IC)
+    public class PlayingGameState : AGameState
     {
-        StateType = GameStateType.Playing;
-        InputController = IC;
-    }
+        public override GameStateType StateType { get; set; }
+        public override IInputController InputController { get; set; }
 
-    public override void Loop()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-            RotateBlock();
-    }
+        public PlayingGameState(IInputController IC)
+        {
+            StateType = GameStateType.Playing;
+            InputController = IC;
+        }
 
-    private void RotateBlock()
-    {
-        InputController.ProcessInput(InputType.RotateBlock);        
+        public override void Loop()
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+                RotateBlock();
+        }
+
+        private void RotateBlock()
+        {
+            InputController.ProcessInput(InputType.RotateBlock);
+        }
     }
 }

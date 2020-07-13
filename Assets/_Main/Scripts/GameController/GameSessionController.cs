@@ -3,35 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSessionController : MonoBehaviour
+namespace EdwinGameDev
 {
-    private GameStateType currentGameStatus = GameStateType.Intro;
-
-    private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
-
-    public void StartGame()
+    public class GameSessionController : MonoBehaviour
     {
+        private GameStateType currentGameStatus = GameStateType.Intro;
 
-    }
+        private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
 
-    private void Start()
-    {
-        
-    }
+        public void StartGame()
+        {
 
-    private void Update()
-    {
-        GameLoop();
-    }
+        }
 
-    public void ChangeGameState(GameStateType gameState)
-    {
-        currentGameStatus = gameState;
-    }
+        private void Start()
+        {
 
-    private void GameLoop()
-    {
-        // Use the loop of the current game state
-        gameStates[currentGameStatus].Loop();
+        }
+
+        private void Update()
+        {
+            GameLoop();
+        }
+
+        public void ChangeGameState(GameStateType gameState)
+        {
+            currentGameStatus = gameState;
+        }
+
+        private void GameLoop()
+        {
+            // Use the loop of the current game state
+            gameStates[currentGameStatus].Loop();
+        }
     }
 }

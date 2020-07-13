@@ -1,92 +1,95 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameMasterState : AGameState
+namespace EdwinGameDev
 {
-    public override IInputController InputController { get; set; }
-    public override GameStateType StateType { get; set; }
-
-    private bool gameMasterEnabled = false;
-
-    public GameMasterState(GameMasterInputController inputController)
+    public class GameMasterState : AGameState
     {
-        InputController = inputController;
-        StateType = GameStateType.GameMaster;
-    }
+        public override IInputController InputController { get; set; }
+        public override GameStateType StateType { get; set; }
 
-    public override void Loop()
-    {
-        // Enabled or Disable GameMaster
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        private bool gameMasterEnabled = false;
+
+        public GameMasterState(GameMasterInputController inputController)
         {
-            gameMasterEnabled = !gameMasterEnabled;
+            InputController = inputController;
+            StateType = GameStateType.GameMaster;
         }
 
-        if (gameMasterEnabled)
+        public override void Loop()
         {
-            GameMasterCommands();
-        }
-    }
+            // Enabled or Disable GameMaster
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                gameMasterEnabled = !gameMasterEnabled;
+            }
 
-    private void GameMasterCommands()
-    {
-        // Spawn random block
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            
-        }
-
-        // Reset block
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
+            if (gameMasterEnabled)
+            {
+                GameMasterCommands();
+            }
         }
 
-        // Spawn block 01
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        private void GameMasterCommands()
         {
-            SpawnBlock(1);
+            // Spawn random block
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+
+            }
+
+            // Reset block
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+
+            }
+
+            // Spawn block 01
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(1);
+            }
+
+            // Spawn block 02
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(2);
+            }
+
+            // Spawn block 03
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(3);
+            }
+
+            // Spawn block 04
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(4);
+            }
+
+            // Spawn block 05
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(5);
+            }
+
+            // Spawn block 06
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(6);
+            }
+
+            // Spawn block 07
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SpawnBlock(7);
+            }
         }
 
-        // Spawn block 02
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        private void SpawnBlock(int value)
         {
-            SpawnBlock(2);
+
         }
-
-        // Spawn block 03
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnBlock(3);
-        }
-
-        // Spawn block 04
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnBlock(4);
-        }
-
-        // Spawn block 05
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnBlock(5);
-        }
-
-        // Spawn block 06
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnBlock(6);
-        }
-
-        // Spawn block 07
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SpawnBlock(7);
-        }
-    }
-
-    private void SpawnBlock(int value)
-    {
-
     }
 }

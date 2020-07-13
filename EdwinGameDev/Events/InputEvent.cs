@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EdwinGameDev
+namespace EdwinGameDev.Events
 {
     public delegate void Execute();  // delegate
 

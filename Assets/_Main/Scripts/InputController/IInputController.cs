@@ -1,4 +1,7 @@
-﻿public interface IInputController
+﻿namespace EdwinGameDev
 {
-    void ProcessInput(InputType input);
+    public interface IInputController
+    {
+        void ProcessInput(InputType input);
+    }
 }

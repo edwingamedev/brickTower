@@ -1,5 +1,8 @@
-﻿public interface IGameState
+﻿namespace EdwinGameDev
 {
-    GameStateType StateType { get; set; } 
-    void Loop();
+    public interface IGameState
+    {
+        GameStateType StateType { get; set; }
+        void Loop();
+    }
 }

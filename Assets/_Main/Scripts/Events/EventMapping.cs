@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
-using UnityEngine.PlayerLoop;
 using System;
 
-namespace EdwinGameDev.Events
+namespace EdwinGameDev
 {
     [CreateAssetMenu(menuName = "Edwin Game Dev/EventMapping")]
     public class EventMapping : ScriptableObject

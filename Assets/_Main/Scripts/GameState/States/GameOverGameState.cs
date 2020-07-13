@@ -1,16 +1,19 @@
-﻿public class GameOverGameState : AGameState
+﻿namespace EdwinGameDev
 {
-    public override GameStateType StateType { get ; set; }
-    public override IInputController InputController { get; set; }
-
-    public GameOverGameState(IInputController IC)
+    public class GameOverGameState : AGameState
     {
-        StateType = GameStateType.Playing;
-        InputController = IC;
-    }
+        public override GameStateType StateType { get; set; }
+        public override IInputController InputController { get; set; }
 
-    public override void Loop()
-    {
-        
+        public GameOverGameState(IInputController IC)
+        {
+            StateType = GameStateType.Playing;
+            InputController = IC;
+        }
+
+        public override void Loop()
+        {
+
+        }
     }
 }

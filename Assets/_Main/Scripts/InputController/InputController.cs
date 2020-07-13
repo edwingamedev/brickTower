@@ -3,60 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class InputController : IInputController
+namespace EdwinGameDev
 {
-    public GameContainer gameContainer;
-    private GameSessionController gameSessionController;
-
-    public InputController(GameContainer gameContainer, GameSessionController gameSessionController)
+    public class InputController : IInputController
     {
-        this.gameContainer = gameContainer;
-        this.gameSessionController = gameSessionController;
-    }
+        public GameContainer gameContainer;
+        private GameSessionController gameSessionController;
 
-    private void RotateBlock()
-    {
-        gameContainer.currentPlayingBlock.RotateLeft();
-    }
-
-    private void MoveBlockLeft()
-    {
-        gameContainer.currentPlayingBlock.MoveLeft();
-    }
-
-    private void MoveBlockRight()
-    {
-        gameContainer.currentPlayingBlock.MoveRight();
-    }
-
-    private void MoveBlockDown()
-    {
-        gameContainer.currentPlayingBlock.MoveDown();
-    }
-
-    public void ProcessInput(InputType input)
-    {
-        switch (input)
+        public InputController(GameContainer gameContainer, GameSessionController gameSessionController)
         {
-            case InputType.RotateBlock:
-                RotateBlock();
-                break;
+            this.gameContainer = gameContainer;
+            this.gameSessionController = gameSessionController;
+        }
 
-            case InputType.MoveBlockLeft:
-                MoveBlockLeft();
-                break;
+        private void RotateBlock()
+        {
+            gameContainer.currentPlayingBlock.RotateLeft();
+        }
 
-            case InputType.MoveBlockRight:
-                MoveBlockRight();
-                break;
+        private void MoveBlockLeft()
+        {
+            gameContainer.currentPlayingBlock.MoveLeft();
+        }
 
-            case InputType.MoveBlockDown:
-                MoveBlockDown();
-                break;
+        private void MoveBlockRight()
+        {
+            gameContainer.currentPlayingBlock.MoveRight();
+        }
 
-            default:
-                break;
+        private void MoveBlockDown()
+        {
+            gameContainer.currentPlayingBlock.MoveDown();
+        }
+
+        public void ProcessInput(InputType input)
+        {
+            switch (input)
+            {
+                case InputType.RotateBlock:
+                    RotateBlock();
+                    break;
+
+                case InputType.MoveBlockLeft:
+                    MoveBlockLeft();
+                    break;
+
+                case InputType.MoveBlockRight:
+                    MoveBlockRight();
+                    break;
+
+                case InputType.MoveBlockDown:
+                    MoveBlockDown();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

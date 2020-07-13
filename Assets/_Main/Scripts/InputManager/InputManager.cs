@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EdwinGameDev.Events
+namespace EdwinGameDev
 {
     public class InputManager : MonoBehaviour
     {

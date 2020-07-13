@@ -1,10 +1,9 @@
-﻿using EdwinGameDev.Events;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EdwinGameDev.InputSystem
+namespace EdwinGameDev
 {
     public class InputListener : MonoBehaviour
     {
@@ -20,5 +19,6 @@ namespace EdwinGameDev.InputSystem
         {
             inputEvent.Withhold(command.Invoke);
         }
+
     }
 }

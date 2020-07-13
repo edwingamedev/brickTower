@@ -1,70 +1,73 @@
-﻿public class GameMasterInputController : IInputController
+﻿namespace EdwinGameDev
 {
-    public GameContainer gameContainer;
-    private GameSessionController gameSessionController;
-
-    public GameMasterInputController(GameContainer gameContainer, GameSessionController gameSessionController)
+    public class GameMasterInputController : IInputController
     {
-        this.gameContainer = gameContainer;
-        this.gameSessionController = gameSessionController;
-    }
+        public GameContainer gameContainer;
+        private GameSessionController gameSessionController;
 
-    public void ProcessInput(InputType input)
-    {
-        switch (input)
+        public GameMasterInputController(GameContainer gameContainer, GameSessionController gameSessionController)
         {
-            case InputType.AddLife:
-                AddLife();
-                break;
-
-            case InputType.RemoveLife:
-                RemoveLife();
-                break;
-
-            case InputType.SpawnRandomBlock:
-                SpawnRandomBlock();
-                break;
-
-            case InputType.RedoLastPlay:
-                RedoLastPlay();
-                break;
-
-            case InputType.ResetCurrentBlock:
-                ResetCurrentBlock();
-                break;
-
-            default:
-                break;
+            this.gameContainer = gameContainer;
+            this.gameSessionController = gameSessionController;
         }
-    }
 
-    public void AddLife()
-    {
-        
-    }
+        public void ProcessInput(InputType input)
+        {
+            switch (input)
+            {
+                case InputType.AddLife:
+                    AddLife();
+                    break;
 
-    public void RedoLastPlay()
-    {
-        
-    }
+                case InputType.RemoveLife:
+                    RemoveLife();
+                    break;
 
-    public void RemoveLife()
-    {
-        
-    }
+                case InputType.SpawnRandomBlock:
+                    SpawnRandomBlock();
+                    break;
 
-    public void ResetCurrentBlock()
-    {
-        
-    }
+                case InputType.RedoLastPlay:
+                    RedoLastPlay();
+                    break;
 
-    public void SpawnBlock(int value)
-    {
-        
-    }
+                case InputType.ResetCurrentBlock:
+                    ResetCurrentBlock();
+                    break;
 
-    public void SpawnRandomBlock() 
-    { 
+                default:
+                    break;
+            }
+        }
 
+        public void AddLife()
+        {
+
+        }
+
+        public void RedoLastPlay()
+        {
+
+        }
+
+        public void RemoveLife()
+        {
+
+        }
+
+        public void ResetCurrentBlock()
+        {
+
+        }
+
+        public void SpawnBlock(int value)
+        {
+
+        }
+
+        public void SpawnRandomBlock()
+        {
+
+        }
     }
 }

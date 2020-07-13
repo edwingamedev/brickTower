@@ -1,16 +1,19 @@
-﻿public class PausedGameState : AGameState
+﻿namespace EdwinGameDev
 {
-    public override GameStateType StateType { get; set; }
-    public override IInputController InputController { get; set; }
-
-    public PausedGameState(IInputController IC)
+    public class PausedGameState : AGameState
     {
-        StateType = GameStateType.Playing;
-        InputController = IC;
-    }
+        public override GameStateType StateType { get; set; }
+        public override IInputController InputController { get; set; }
 
-    public override void Loop()
-    {
+        public PausedGameState(IInputController IC)
+        {
+            StateType = GameStateType.Playing;
+            InputController = IC;
+        }
 
+        public override void Loop()
+        {
+
+        }
     }
 }

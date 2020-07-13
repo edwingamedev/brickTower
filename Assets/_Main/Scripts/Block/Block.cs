@@ -3,47 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+namespace EdwinGameDev
 {
-    private new Transform transform;
-    public Rigidbody2D rb;
-
-    private bool hasPhysics = false;
-
-    private Vector2 leftVector = new Vector2(1, 0);
-    private Vector2 rightVector = new Vector2(1, 0);
-
-    private void Awake()
+    public class Block : MonoBehaviour
     {
-        transform = GetComponent<Transform>();
-    }
+        private new Transform transform;
+        public new Rigidbody2D rigidbody;
 
-    public void RotateLeft()
-    {
-        transform.Rotate(Vector3.forward, 90);
-    }
+        private bool hasPhysics = false;
 
-    public void MoveLeft()
-    {
-        transform.Translate(leftVector);
-    }
+        private Vector2 leftVector = new Vector2(1, 0);
+        private Vector2 rightVector = new Vector2(1, 0);
 
-    public void MoveRight()
-    {
-        transform.Translate(rightVector);
-    }
-
-    public void MoveDown()
-    {
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!hasPhysics)
+        private void Awake()
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            hasPhysics = true;
+            transform = GetComponent<Transform>();
+        }
+
+        public void RotateLeft()
+        {
+            transform.Rotate(Vector3.forward, 90);
+        }
+
+        public void MoveLeft()
+        {
+            transform.Translate(leftVector);
+        }
+
+        public void MoveRight()
+        {
+            transform.Translate(rightVector);
+        }
+
+        public void MoveDown()
+        {
+
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!hasPhysics)
+            {
+                rigidbody.bodyType = RigidbodyType2D.Dynamic;
+                hasPhysics = true;
+            }
         }
     }
 }

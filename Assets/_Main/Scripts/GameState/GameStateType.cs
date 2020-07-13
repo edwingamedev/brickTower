@@ -1,8 +1,11 @@
-﻿public enum GameStateType
+﻿namespace EdwinGameDev
 {
-    Intro,
-    Playing,
-    Paused,
-    GameOver,
-    GameMaster
+    public enum GameStateType
+    {
+        Intro,
+        Playing,
+        Paused,
+        GameOver,
+        GameMaster
+    }
 }

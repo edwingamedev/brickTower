@@ -1,12 +1,12 @@
 ﻿namespace EdwinGameDev
 {
-    public class PausedGameState : IGameState
+    public class IntroGameState : IGameState
     {
         public GameStateType StateType { get; set; }
 
-        public PausedGameState()
+        public IntroGameState()
         {
-            StateType = GameStateType.Playing;
+            StateType = GameStateType.Intro;
         }
 
         public void Loop()

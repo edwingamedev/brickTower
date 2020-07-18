@@ -6,7 +6,7 @@
 
         public GameOverGameState()
         {
-            StateType = GameStateType.Playing;
+            StateType = GameStateType.GameOver;
         }
 
         public void Loop()

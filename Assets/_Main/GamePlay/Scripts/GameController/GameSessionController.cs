@@ -9,21 +9,31 @@ namespace EdwinGameDev
     {
         private GameStateType currentGameStatus = GameStateType.Intro;
 
+        [SerializeField]
         private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
 
         public void StartGame()
         {
+            gameStates.Clear();
 
+            GameStateFactory gameStateFactory = new GameStateFactory();
+
+            List<IGameState> LGS = gameStateFactory.MakeAllStates();
+
+            foreach (IGameState item in LGS)
+            {
+                gameStates.Add(item.StateType, item);
+            }
         }
 
         private void Start()
         {
-
+            StartGame();
         }
 
         private void Update()
         {
-            GameLoop();
+           // GameLoop();
         }
 
         public void ChangeGameState(GameStateType gameState)

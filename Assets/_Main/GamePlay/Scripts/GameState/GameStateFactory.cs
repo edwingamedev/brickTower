@@ -1,4 +1,8 @@
-﻿namespace EdwinGameDev
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace EdwinGameDev
 {
     public class GameStateFactory
     {
@@ -9,11 +13,22 @@
 
         }
 
+        public List<IGameState> MakeAllStates()
+        {
+            List<IGameState> s = new List<IGameState>();
+
+            foreach (GameStateType t in Enum.GetValues(typeof(GameStateType)))
+            {
+                s.Add(MakeGameState(t));
+            }
+
+            return s;
+        }
+
         public IGameState MakeGameState(GameStateType stateType)
         {
             switch (stateType)
             {
-                default:
                 case GameStateType.Intro:
                     gameState = new IntroGameState();
                     break;
@@ -25,6 +40,8 @@
                     break;
                 case GameStateType.GameOver:
                     gameState = new GameOverGameState();
+                    break;
+                default:
                     break;
             }
 

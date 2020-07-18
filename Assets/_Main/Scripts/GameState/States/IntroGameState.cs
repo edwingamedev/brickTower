@@ -1,15 +1,15 @@
 ﻿namespace EdwinGameDev
 {
-    public class IntroGameState : AGameState
+    public class IntroGameState : IGameState
     {
-        public override GameStateType StateType { get; set; }
+        public GameStateType StateType { get; set; }
 
         public IntroGameState()
         {
             StateType = GameStateType.Playing;
         }
 
-        public override void Loop()
+        public void Loop()
         {
 
         }

@@ -18,22 +18,22 @@ namespace EdwinGameDev
 
         private void RotateBlock()
         {
-            gameContainer.currentPlayingBlock.RotateLeft();
+            
         }
 
         private void MoveBlockLeft()
         {
-            gameContainer.currentPlayingBlock.MoveLeft();
+            
         }
 
         private void MoveBlockRight()
         {
-            gameContainer.currentPlayingBlock.MoveRight();
+           
         }
 
         private void MoveBlockDown()
         {
-            gameContainer.currentPlayingBlock.MoveDown();
+           
         }
 
         public void ProcessInput(InputType input)

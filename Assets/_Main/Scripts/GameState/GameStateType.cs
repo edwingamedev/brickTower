@@ -5,7 +5,6 @@
         Intro,
         Playing,
         Paused,
-        GameOver,
-        GameMaster
+        GameOver
     }
 }

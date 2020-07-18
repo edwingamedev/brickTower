@@ -9,25 +9,22 @@
 
         }
 
-        public IGameState MakeGameState(GameStateType stateType, IInputController inputController)
+        public IGameState MakeGameState(GameStateType stateType)
         {
             switch (stateType)
             {
                 default:
                 case GameStateType.Intro:
-                    gameState = new IntroGameState(inputController);
+                    gameState = new IntroGameState();
                     break;
                 case GameStateType.Playing:
-                    gameState = new PlayingGameState(inputController);
+                    gameState = new PlayingGameState();
                     break;
                 case GameStateType.Paused:
-                    gameState = new PausedGameState(inputController);
+                    gameState = new PausedGameState();
                     break;
                 case GameStateType.GameOver:
-                    gameState = new GameOverGameState(inputController);
-                    break;
-                case GameStateType.GameMaster:
-                    gameState = new GameMasterState(inputController as GameMasterInputController);
+                    gameState = new GameOverGameState();
                     break;
             }
 

@@ -6,38 +6,12 @@ using System.Collections.Generic;
 
 namespace EdwinGameDev
 {
-    [Serializable]
-    public struct BlockCommands
-    {
-        public ScriptableEvent moveLeft;
-        public ScriptableEvent moveRight;
-        public ScriptableEvent moveDown;
-        public ScriptableEvent turnBlock;
-    }
-
     [CreateAssetMenu(menuName = "Edwin Game Dev/GameContainer")]
     public class GameContainer : ScriptableObject
     {
+        public float blockDropRate;
         public List<Block> blocksOfSession = new List<Block>();
-        public Block currentPlayingBlock => blocksOfSession.Last();
-
-        public BlockCommands blockCommands;
-
-        private void OnEnable()
-        {
-            blockCommands.moveLeft.OnTriggered += BlockMoveLeft;
-            blockCommands.moveRight.OnTriggered += BlockMoveRight;
-            blockCommands.moveDown.OnTriggered += BlockMoveDown;
-            blockCommands.turnBlock.OnTriggered += BlockTurn;
-        }
-
-        private void OnDisable()
-        {
-            blockCommands.moveLeft.OnTriggered -= BlockMoveLeft;
-            blockCommands.moveRight.OnTriggered -= BlockMoveRight;
-            blockCommands.moveDown.OnTriggered -= BlockMoveDown;
-            blockCommands.turnBlock.OnTriggered -= BlockTurn;
-        }
+        private Block currentPlayingBlock => blocksOfSession.Last();
 
         public void RemoveBlock(Block b)
         {
@@ -45,28 +19,17 @@ namespace EdwinGameDev
             Destroy(b.gameObject);
         }
 
-        public void BlockMoveLeft()
+        public void RotateBlock()
         {
             if (blocksOfSession.Any())
-                currentPlayingBlock?.MoveLeft();
+                currentPlayingBlock?.Rotate();
         }
 
-        public void BlockMoveRight()
+        public void MoveBlock(Vector2Int movement)
         {
             if (blocksOfSession.Any())
-                currentPlayingBlock?.MoveRight();
+                currentPlayingBlock?.MoveBlock(movement);
         }
 
-        public void BlockMoveDown()
-        {
-            if (blocksOfSession.Any())
-                currentPlayingBlock?.MoveDown();
-        }
-
-        public void BlockTurn()
-        {
-            if (blocksOfSession.Any())
-                currentPlayingBlock?.RotateLeft();
-        }
     }
 }

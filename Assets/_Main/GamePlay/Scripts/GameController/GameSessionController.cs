@@ -12,6 +12,9 @@ namespace EdwinGameDev
         [SerializeField]
         private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
 
+        public GameGrid gameGrid;
+        public Transform grid;
+
         public void StartGame()
         {
             gameStates.Clear();
@@ -24,6 +27,8 @@ namespace EdwinGameDev
             {
                 gameStates.Add(item.StateType, item);
             }
+
+            gameGrid.CreateGrid(grid);
         }
 
         private void Start()

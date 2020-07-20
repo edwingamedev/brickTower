@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb99a6c7dc564494c83f9ea9f961d9e6, type: 3}
   m_Name: Block Factory
   m_EditorClassIdentifier: 
-  blocks:
-  - {fileID: 481378496657570761, guid: ba112acfe9a404b429998c462ac383bd, type: 3}
-  - {fileID: 1659580283359909930, guid: 30d19763a1bf1234dbc67b9de2448873, type: 3}
-  - {fileID: 3234897971069906346, guid: 8631affb0f7f45b40a56a1e9a1ad7535, type: 3}
-  - {fileID: 8124742343641610324, guid: 9a5ffdb9dc9c024488ae2df33494b8ee, type: 3}
-  - {fileID: 8480291446684412045, guid: cc1fe8716bf5a5149bfeedb9432024b0, type: 3}
-  - {fileID: 7276732119644163457, guid: 92d9f95bdc9d65c499a920efa0c8c483, type: 3}
-  - {fileID: 519895636053271820, guid: 72a3d31b700f3644c9f52a5acef3294e, type: 3}
+  gameSettings: {fileID: 11400000, guid: fd6d62dcbc277fb42835d2d2f9719a75, type: 2}
+  blockPrefab: {fileID: 6834594904365271028, guid: b90aec2c5954b2d4f8cb468a51d8598e,
+    type: 3}

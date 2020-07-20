@@ -12,8 +12,7 @@ namespace EdwinGameDev
 
         public void SpawnRandomBlock()
         {
-            GameObject blockGO = Instantiate(blockFactory.GetRandomBlock(), spawnPoint.position, Quaternion.identity, spawnPoint);
-            Block block = blockGO.GetComponent<Block>();
+            Block block = blockFactory.SpawnRandomBlock(spawnPoint);
             gameContainer.blocksOfSession.Add(block);
         }
     }

@@ -9,6 +9,8 @@ public class Piece : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     public GameGrid gameGrid;
+    public Collider2D col;
+    public float collisionDistance = 0.1f;
 
     public void SetSprite(Sprite sprite)
     {
@@ -19,16 +21,23 @@ public class Piece : MonoBehaviour
     /// Checks to see if the tile can be moved to the specified positon.
     /// </summary>
     /// <param name="endPos">Coordinates of the position you are trying to move the tile to</param>
-    public bool CanTileMove(Vector2Int endPos)
+    public bool CanPieceMove(Piece[] blockPieces, Vector2Int endPos)
     {
         if (!gameGrid.IsInBounds(endPos))
         {
             return false;
         }
-        if (!gameGrid.IsPosEmpty(endPos))
+
+        if (gameGrid.CheckIfCollides(endPos, collisionDistance, blockPieces))
         {
             return false;
         }
+
+        //if (!gameGrid.IsPosEmpty(endPos))
+        //{
+        //    return false;
+        //}
+
         return true;
     }
 
@@ -42,8 +51,8 @@ public class Piece : MonoBehaviour
             return false;
         }
 
-        gameGrid.OccupyPos(pieceCoordinates, gameObject);
         return true;
+        //gameGrid.OccupyPos(pieceCoordinates, gameObject);
     }
 
     /// <summary>

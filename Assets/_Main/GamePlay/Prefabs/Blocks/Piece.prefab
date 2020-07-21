@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceCoordinates: {x: 0, y: 0}
-  block: {fileID: 0}
   spriteRenderer: {fileID: 5288310962596498363}
   gameGrid: {fileID: 11400000, guid: 70b9bf034e7a93e41be5a5816c0eaa9d, type: 2}
+  col: {fileID: 6517460132249443994}
+  collisionDistance: 0

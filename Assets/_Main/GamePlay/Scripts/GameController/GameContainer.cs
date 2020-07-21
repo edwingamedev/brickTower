@@ -30,6 +30,5 @@ namespace EdwinGameDev
             if (blocksOfSession.Any())
                 currentPlayingBlock?.MoveBlock(movement);
         }
-
     }
 }

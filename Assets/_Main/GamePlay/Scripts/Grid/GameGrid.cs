@@ -62,6 +62,28 @@ namespace EdwinGameDev
             }
         }
 
+        public bool CheckIfCollides(Vector2Int coordToTest, float distance, Piece[] blockPieces)
+        {
+            RaycastHit2D raycast = Physics2D.Raycast(coordToTest, Vector2.down, distance);
+            bool sameBlockCollision = false;
+
+            if (raycast)
+            {
+                for (int i = 0; i < blockPieces.Length; i++)
+                {
+                    if (sameBlockCollision)
+                        break;
+
+                    sameBlockCollision = raycast.collider == blockPieces[i].col;
+                }
+
+                if (!sameBlockCollision)
+                    Debug.Log($"Collided {raycast.transform.name}: {raycast.transform.position}");
+            }
+
+            return !sameBlockCollision && raycast;
+        }
+
         /// <summary>
         /// Called when a piece is set in place. Sets the grid location to an occupied state.
         /// </summary>

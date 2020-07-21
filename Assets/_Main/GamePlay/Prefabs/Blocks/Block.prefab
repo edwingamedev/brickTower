@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6834594904365271030}
   - component: {fileID: 1668145014833026717}
+  - component: {fileID: 2563520869535429975}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -45,3 +46,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockType: 0
   onBlockSet: {fileID: 11400000, guid: fd6f02bf3c861204ca73fe392c6a9ced, type: 2}
+  rb: {fileID: 2563520869535429975}
+--- !u!50 &2563520869535429975
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834594904365271028}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 20
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

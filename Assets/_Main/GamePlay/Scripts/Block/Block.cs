@@ -12,10 +12,17 @@ namespace EdwinGameDev
         private int rotationIndex { get; set; }
         private Vector2Int[,] offset;
         public ScriptableEvent onBlockSet;
+        [SerializeField] private Rigidbody2D rb;
 
         private void Awake()
         {
 
+        }
+
+        public void EnablePhysics()
+        {
+            rb.simulated = true;
+            rb.bodyType = RigidbodyType2D.Dynamic;
         }
 
         public void Build(Vector2Int spawnPos, BlockType blockType, Piece[] pieces, Vector2Int[,] offset)
@@ -31,12 +38,13 @@ namespace EdwinGameDev
         {
             for (int i = 0; i < pieces.Length; i++)
             {
-                if (!pieces[i].CanTileMove(movement + pieces[i].pieceCoordinates))
+                if (!pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates))
                 {
                     Debug.Log("Cant Go there!");
                     if (movement == Vector2Int.down)
                     {
-                        PlacePiece();
+                        Debug.Log("Placed!");
+                        PlaceBlock();
                     }
                     return false;
                 }
@@ -97,7 +105,7 @@ namespace EdwinGameDev
                 offsetVal1 = offset[testIndex, oldRotationIndex];
                 offsetVal2 = offset[testIndex, rotationIndex];
                 endOffset = offsetVal1 - offsetVal2;
-                if (CanMovePiece(endOffset))
+                if (CanMovePiece(pieces, endOffset))
                 {
                     movePossible = true;
                     break;
@@ -119,11 +127,11 @@ namespace EdwinGameDev
         /// Checks if the piece is able to be moved by the specified amount. A piece cannot be moved if there
         /// is already another piece there or the piece would end up out of bounds.
         /// </summary>
-        private bool CanMovePiece(Vector2Int movement)
+        private bool CanMovePiece(Piece[] blockPieces, Vector2Int movement)
         {
             for (int i = 0; i < pieces.Length; i++)
             {
-                if (!pieces[i].CanTileMove(movement + pieces[i].pieceCoordinates))
+                if (!pieces[i].CanPieceMove(blockPieces, movement + pieces[i].pieceCoordinates))
                 {
                     return false;
                 }
@@ -140,9 +148,9 @@ namespace EdwinGameDev
         }
 
         /// <summary>
-        /// Sets the piece in its permanent location.
+        /// Sets the block in its permanent location.
         /// </summary>
-        private void PlacePiece()
+        private void PlaceBlock()
         {
             for (int i = 0; i < pieces.Length; i++)
             {
@@ -152,6 +160,8 @@ namespace EdwinGameDev
                     return;
                 }
             }
+
+            EnablePhysics();
 
             onBlockSet.Trigger();
         }

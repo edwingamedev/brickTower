@@ -38,7 +38,7 @@ namespace EdwinGameDev
             blockCommands.turnBlock.OnTriggered -= BlockTurn;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             DropBlock();
         }

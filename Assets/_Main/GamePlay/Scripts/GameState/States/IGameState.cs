@@ -1,8 +1,10 @@
-﻿namespace EdwinGameDev
+﻿using UnityEngine;
+
+namespace EdwinGameDev
 {
     public interface IGameState
     {
         GameStateType StateType { get; set; }
-        void Loop();
+        void Execute(string actionName);
     }
 }

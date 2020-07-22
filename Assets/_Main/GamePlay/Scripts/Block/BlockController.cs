@@ -26,8 +26,8 @@ namespace EdwinGameDev
             blockCommands.moveRight.OnTriggered += BlockMoveRight;
             blockCommands.moveDown.OnTriggered += BlockMoveDown;
             blockCommands.turnBlock.OnTriggered += BlockTurn;
+            gameContainer.ResetGame();
 
-            gameContainer.blocksOfSession.Clear();
         }
 
         private void OnDisable()
@@ -54,17 +54,17 @@ namespace EdwinGameDev
 
         public void BlockMoveLeft()
         {
-            gameContainer?.MoveBlock(Vector2Int.left);
+            gameContainer?.MoveBlock(MovementType.Left);
         }
 
         public void BlockMoveRight()
         {
-            gameContainer?.MoveBlock(Vector2Int.right);
+            gameContainer?.MoveBlock(MovementType.Right);
         }
 
         public void BlockMoveDown()
         {
-            gameContainer?.MoveBlock(Vector2Int.down);
+            gameContainer?.MoveBlock(MovementType.Down);
         }
 
         public void BlockTurn()

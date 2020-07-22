@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace EdwinGameDev
 {
@@ -13,33 +14,21 @@ namespace EdwinGameDev
 
         }
 
-        public List<IGameState> MakeAllStates()
+        public IGameState MakeGameState(GameScreenSettings screenSettings)
         {
-            List<IGameState> s = new List<IGameState>();
-
-            foreach (GameStateType t in Enum.GetValues(typeof(GameStateType)))
-            {
-                s.Add(MakeGameState(t));
-            }
-
-            return s;
-        }
-
-        public IGameState MakeGameState(GameStateType stateType)
-        {
-            switch (stateType)
+            switch (screenSettings.gameStateType)
             {
                 case GameStateType.Intro:
-                    gameState = new IntroGameState();
+                    gameState = new IntroGameState(screenSettings);
                     break;
                 case GameStateType.Playing:
-                    gameState = new PlayingGameState();
+                    gameState = new PlayingGameState(screenSettings);
                     break;
                 case GameStateType.Paused:
-                    gameState = new PausedGameState();
+                    gameState = new PausedGameState(screenSettings);
                     break;
                 case GameStateType.GameOver:
-                    gameState = new GameOverGameState();
+                    gameState = new GameOverGameState(screenSettings);
                     break;
                 default:
                     break;

@@ -22,7 +22,7 @@ namespace EdwinGameDev
             return blockStructure.GetBlockOffset(blockType);
         }
 
-        private Sprite GetSprite(BlockType blockType)
+        public Sprite GetSprite(BlockType blockType)
         {
             if (blockSprites == null)
                 return null;

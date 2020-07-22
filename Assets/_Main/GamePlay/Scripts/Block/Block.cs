@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EdwinGameDev
@@ -12,41 +13,77 @@ namespace EdwinGameDev
         private int rotationIndex { get; set; }
         private Vector2Int[,] offset;
         public ScriptableEvent onBlockSet;
+        public ScriptableEvent onBlockFellOff;
         [SerializeField] private Rigidbody2D rb;
+        private bool previousSimulated = false;
+        private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
 
-        private void Awake()
+        public void ResumePhysics()
         {
-
+            rb.simulated = previousSimulated;
+            rb.bodyType = previousBodyType;
         }
 
         public void EnablePhysics()
         {
+            previousSimulated = rb.simulated;
+            previousBodyType = rb.bodyType;
+
             rb.simulated = true;
             rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        public void DisablePhysics()
+        {
+            previousSimulated = rb.simulated;
+            previousBodyType = rb.bodyType;
+
+            rb.simulated = false;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        public float GetHighestPiecePosition()
+        {
+            return pieces.Max(p => p.transform.position.y);
         }
 
         public void Build(Vector2Int spawnPos, BlockType blockType, Piece[] pieces, Vector2Int[,] offset)
         {
             transform.name = $"Block {blockType}";
-                        
+
             this.blockType = blockType;
             this.pieces = pieces;
             this.offset = offset;
         }
 
-        public bool MoveBlock(Vector2Int movement)
+        public bool MoveBlock(Vector2 movement)
         {
+
             for (int i = 0; i < pieces.Length; i++)
             {
-                if (!pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates))
+                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates);
+
+                switch (movementRestriction)
                 {
-                    Debug.Log("Cant Go there!");
-                    if (movement == Vector2Int.down)
-                    {
-                        Debug.Log("Placed!");
+                    case MovementRestriction.FellOff:
+                        Debug.Log("Fell Off!");
                         PlaceBlock();
-                    }
-                    return false;
+
+                        BlockFellOff();
+                        return false;
+
+                    case MovementRestriction.CannotMove:
+                        Debug.Log("Cant Go there!");
+
+                        if (movement.y < 0)
+                        {
+                            Debug.Log("Placed!");
+                            PlaceBlock();
+                        }
+                        return false;
+                    default:
+                    case MovementRestriction.CanMove:
+                        break;
                 }
             }
 
@@ -56,6 +93,10 @@ namespace EdwinGameDev
             }
 
             return true;
+        }
+        private void BlockFellOff()
+        {
+            onBlockFellOff.Trigger();
         }
 
         public void Rotate()
@@ -131,7 +172,9 @@ namespace EdwinGameDev
         {
             for (int i = 0; i < pieces.Length; i++)
             {
-                if (!pieces[i].CanPieceMove(blockPieces, movement + pieces[i].pieceCoordinates))
+                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates);
+
+                if (movementRestriction == MovementRestriction.CannotMove)
                 {
                     return false;
                 }

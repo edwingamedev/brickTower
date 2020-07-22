@@ -10,9 +10,9 @@ namespace EdwinGameDev
         public GameSettings gameSettings;
         public GameObject blockPrefab;
 
-        public Block SpawnBlock(BlockType blockType, Transform spawnPoint)
+        public Block SpawnBlock(BlockType blockType, Transform spawnPoint, Transform blockHolder)
         {
-            GameObject blockGO = Instantiate(blockPrefab, spawnPoint.position, Quaternion.identity, spawnPoint);
+            GameObject blockGO = Instantiate(blockPrefab, spawnPoint.position, Quaternion.identity, blockHolder);
             Block block = blockGO.GetComponent<Block>();
 
             Vector2Int spawnPosition = new Vector2Int((int)spawnPoint.position.x, (int)spawnPoint.position.y);
@@ -23,10 +23,16 @@ namespace EdwinGameDev
             return block;
         }
 
-        public Block SpawnRandomBlock(Transform spawnPoint)
+        public BlockType GenerateRandomBlockType()
         {
             int randomIndex = Random.Range(0, BlockType.GetNames(typeof(BlockType)).Length);
-            return SpawnBlock((BlockType)randomIndex, spawnPoint);
+
+            return (BlockType)randomIndex;
+        }
+
+        public Block SpawnRandomBlock(Transform spawnPoint, Transform blockHolder)
+        {            
+            return SpawnBlock(GenerateRandomBlockType(), spawnPoint, blockHolder);
         }
 
         private Piece[] GetBlockPieces(Vector2Int spawnPos, BlockType blockType, Transform parent)

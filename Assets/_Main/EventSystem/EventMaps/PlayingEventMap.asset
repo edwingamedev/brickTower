@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca7473c77a11f44098d47f5eaef4bca, type: 3}
+  m_Name: PlayingEventMap
+  m_EditorClassIdentifier: 
+  eventMappers:
+  - eventName: StartGame
+    scriptableEvent: {fileID: 11400000, guid: ab9ac65b95b74b54d89124ffb759cdf3, type: 2}
+  - eventName: PauseGame
+    scriptableEvent: {fileID: 11400000, guid: 8c91e9568621e9e46b36c08d59e057ef, type: 2}
+  - eventName: ResumeGame
+    scriptableEvent: {fileID: 0}

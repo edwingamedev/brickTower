@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a3bdeb0a0bff849a761cb402932daa, type: 3}
   m_Name: Game Grid
   m_EditorClassIdentifier: 
-  gridPiece: {fileID: 3220409648032558019, guid: 803c40a425b752147809c54b850f9f3b,
-    type: 3}
-  gridMinX: 0
-  gridMaxX: 11
+  gridMinX: -3
+  gridMaxX: 14
   gridMinY: 0
-  gridMaxY: 20
+  gridMaxY: 40

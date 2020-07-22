@@ -1,92 +1,100 @@
-﻿using EdwinGameDev;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piece : MonoBehaviour
+namespace EdwinGameDev
 {
-    public Vector2Int pieceCoordinates;
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-    public GameGrid gameGrid;
-    public Collider2D col;
-    public float collisionDistance = 0.1f;
-
-    public void SetSprite(Sprite sprite)
+    public enum MovementRestriction
     {
-        spriteRenderer.sprite = sprite;
+        CanMove,
+        FellOff,
+        CannotMove
     }
 
-    /// <summary>
-    /// Checks to see if the tile can be moved to the specified positon.
-    /// </summary>
-    /// <param name="endPos">Coordinates of the position you are trying to move the tile to</param>
-    public bool CanPieceMove(Piece[] blockPieces, Vector2Int endPos)
+    public class Piece : MonoBehaviour
     {
-        if (!gameGrid.IsInBounds(endPos))
+        public Vector2 pieceCoordinates;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        public GameGrid gameGrid;
+        public Collider2D col;
+        public float collisionDistance = 0.1f;
+
+        public void SetSprite(Sprite sprite)
         {
-            return false;
+            spriteRenderer.sprite = sprite;
         }
 
-        if (gameGrid.CheckIfCollides(endPos, collisionDistance, blockPieces))
+        /// <summary>
+        /// Checks to see if the tile can be moved to the specified positon.
+        /// </summary>
+        /// <param name="endPos">Coordinates of the position you are trying to move the tile to</param>
+        public MovementRestriction CanPieceMove(Piece[] blockPieces, Vector2 endPos)
         {
-            return false;
+            if (gameGrid.HasFellOffBounds(endPos))
+            {
+                return MovementRestriction.FellOff;
+            }
+
+            if (!gameGrid.IsInBounds(endPos))
+            {
+                return MovementRestriction.CannotMove;
+            }
+
+            if (gameGrid.CheckIfCollides(endPos, collisionDistance, blockPieces))
+            {
+                return MovementRestriction.CannotMove;
+            }                
+
+            return MovementRestriction.CanMove;
         }
 
-        //if (!gameGrid.IsPosEmpty(endPos))
-        //{
-        //    return false;
-        //}
-
-        return true;
-    }
-
-    /// <summary>
-    /// Sets the tile in it's current position
-    /// </summary>
-    public bool PlacePiece()
-    {
-        if (pieceCoordinates.y >= gameGrid.gridMaxY)
+        /// <summary>
+        /// Sets the tile in it's current position
+        /// </summary>
+        public bool PlacePiece()
         {
-            return false;
+            if (pieceCoordinates.y >= gameGrid.gridMaxY)
+            {
+                return false;
+            }
+
+            return true;
+            //gameGrid.OccupyPos(pieceCoordinates, gameObject);
         }
 
-        return true;
-        //gameGrid.OccupyPos(pieceCoordinates, gameObject);
+        /// <summary>
+        /// Moves the tile by the specified amount
+        /// </summary>
+        public void MoveTile(Vector2 movement)
+        {
+            Vector2 endPos = pieceCoordinates + movement;
+            UpdatePosition(endPos);
+        }
+
+        /// <summary>
+        /// Sets some new variables at the new position
+        /// </summary>
+        public void UpdatePosition(Vector2 newPos)
+        {
+            pieceCoordinates = newPos;
+            gameObject.transform.position = new Vector2(newPos.x, newPos.y);
+        }
+
+        /// <summary>
+        /// Rotates the tile by 90 degrees about the origin tile.
+        /// </summary>
+        public void RotateTile(Vector2 originPos, bool clockwise)
+        {
+            Vector2 relativePos = pieceCoordinates - originPos;
+            Vector2[] rotMatrix = clockwise ? new Vector2[2] { new Vector2(0, -1), new Vector2(1, 0) }
+                                               : new Vector2[2] { new Vector2(0, 1), new Vector2(-1, 0) };
+            float newXPos = rotMatrix[0].x * relativePos.x + rotMatrix[1].x * relativePos.y;
+            float newYPos = rotMatrix[0].y * relativePos.x + rotMatrix[1].y * relativePos.y;
+            Vector2 newPos = new Vector2(newXPos, newYPos);
+
+            newPos += originPos;
+            UpdatePosition(newPos);
+        }
+
     }
-
-    /// <summary>
-    /// Moves the tile by the specified amount
-    /// </summary>
-    public void MoveTile(Vector2Int movement)
-    {
-        Vector2Int endPos = pieceCoordinates + movement;
-        UpdatePosition(endPos);
-    }
-
-    /// <summary>
-    /// Sets some new variables at the new position
-    /// </summary>
-    public void UpdatePosition(Vector2Int newPos)
-    {
-        pieceCoordinates = newPos;
-        gameObject.transform.position = new Vector2(newPos.x, newPos.y);
-    }
-
-    /// <summary>
-    /// Rotates the tile by 90 degrees about the origin tile.
-    /// </summary>
-    public void RotateTile(Vector2Int originPos, bool clockwise)
-    {
-        Vector2Int relativePos = pieceCoordinates - originPos;
-        Vector2Int[] rotMatrix = clockwise ? new Vector2Int[2] { new Vector2Int(0, -1), new Vector2Int(1, 0) }
-                                           : new Vector2Int[2] { new Vector2Int(0, 1), new Vector2Int(-1, 0) };
-        int newXPos = (rotMatrix[0].x * relativePos.x) + (rotMatrix[1].x * relativePos.y);
-        int newYPos = (rotMatrix[0].y * relativePos.x) + (rotMatrix[1].y * relativePos.y);
-        Vector2Int newPos = new Vector2Int(newXPos, newYPos);
-
-        newPos += originPos;
-        UpdatePosition(newPos);
-    }
-
 }

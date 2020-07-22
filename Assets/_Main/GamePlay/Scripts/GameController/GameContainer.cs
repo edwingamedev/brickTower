@@ -1,22 +1,73 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Linq;
-using System;
 using System.Collections.Generic;
+using System;
 
 namespace EdwinGameDev
 {
     [CreateAssetMenu(menuName = "Edwin Game Dev/GameContainer")]
     public class GameContainer : ScriptableObject
     {
+        public BlockMovement blockMovement;
         public float blockDropRate;
         public List<Block> blocksOfSession = new List<Block>();
         private Block currentPlayingBlock => blocksOfSession.Last();
+        private bool paused = true;
+        public int towerHeight = 0;
+        public BlockType nextBlock;
+
+        public void SetPause(bool paused)
+        {
+            this.paused = paused;
+
+            if (paused)
+            {
+                foreach (Block block in blocksOfSession)
+                {
+                    block.DisablePhysics();
+                }
+            }
+            else
+            {
+                foreach (Block block in blocksOfSession)
+                {
+                    block.ResumePhysics();
+                }
+            }
+        }
+
+        public void NextBlock(BlockType nextBlock)
+        {
+            this.nextBlock = nextBlock;
+        }
 
         public void RemoveBlock(Block b)
         {
-            blocksOfSession.Remove(b);
-            Destroy(b.gameObject);
+            if (b)
+            {
+                blocksOfSession.Remove(b);
+
+                if (b.gameObject)
+                    Destroy(b.gameObject);
+            }
+        }
+
+        public void ResetGame()
+        {
+            foreach (Block block in blocksOfSession)
+            {
+                RemoveBlock(block);
+            }
+
+            blocksOfSession.Clear();
+
+            towerHeight = 0;
+        }
+
+        public void AddBlock(Block block)
+        {
+            blocksOfSession.Add(block);
         }
 
         public void RotateBlock()
@@ -25,10 +76,40 @@ namespace EdwinGameDev
                 currentPlayingBlock?.Rotate();
         }
 
-        public void MoveBlock(Vector2Int movement)
+        public void MoveBlock(MovementType movementType)
         {
+            if (paused)
+                return;
+
             if (blocksOfSession.Any())
-                currentPlayingBlock?.MoveBlock(movement);
+            {
+                switch (movementType)
+                {
+                    default:
+                    case MovementType.Down:
+                        currentPlayingBlock.MoveBlock(new Vector2(0, -blockMovement.vertical));
+                        break;
+                    case MovementType.Left:
+                        currentPlayingBlock.MoveBlock(new Vector2(-blockMovement.horizontal, 0));
+                        break;
+                    case MovementType.Right:
+                        currentPlayingBlock.MoveBlock(new Vector2(blockMovement.horizontal, 0));
+                        break;
+                }
+            }
+        }
+
+        public bool CheckTowerHeight()
+        {
+            if (blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition() > towerHeight + 5)
+            {
+                towerHeight += 2;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

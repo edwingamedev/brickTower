@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4dcc87911690647bde54c8c72ff5e2, type: 3}
   m_Name: Game Container
   m_EditorClassIdentifier: 
-  blockDropRate: 0.5
+  blockMovement:
+    horizontal: 0.5
+    vertical: 0.5
+  blockDropRate: 0.1
   blocksOfSession: []
+  towerHeight: 0
+  nextBlock: 4

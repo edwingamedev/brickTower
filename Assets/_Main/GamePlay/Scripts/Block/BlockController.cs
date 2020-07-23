@@ -50,6 +50,11 @@ namespace EdwinGameDev
             }
         }
 
+        public void BlockFellOff()
+        {
+            gameContainer?.RemoveLastBlock();
+        }
+
         public void BlockMoveLeft()
         {
             gameContainer?.MoveBlock(MovementType.Left);

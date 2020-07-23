@@ -40,6 +40,13 @@ namespace EdwinGameDev
             this.nextBlock = nextBlock;
         }
 
+        public void RemoveLastBlock()
+        {
+            Block b = blocksOfSession[blocksOfSession.Count - 2];
+
+            RemoveBlock(b);
+        }
+
         public void RemoveBlock(Block b)
         {
             if (b)

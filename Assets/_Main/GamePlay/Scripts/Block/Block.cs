@@ -17,6 +17,16 @@ namespace EdwinGameDev
         [SerializeField] private Rigidbody2D rb;
         private bool previousSimulated = false;
         private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
+        public GameGrid gameGrid;
+        private bool fellOff = false;
+
+        private void Update()
+        {
+            if (!fellOff && gameGrid.HasFellOffBounds(pieces[0].transform.position))
+            {
+                BlockFellOff();
+            }
+        }
 
         public void ResumePhysics()
         {
@@ -65,8 +75,7 @@ namespace EdwinGameDev
 
                 switch (movementRestriction)
                 {
-                    case MovementRestriction.FellOff:
-                        Debug.Log("Fell Off!");
+                    case MovementRestriction.FellOff:                        
                         PlaceBlock();
 
                         BlockFellOff();
@@ -96,6 +105,11 @@ namespace EdwinGameDev
         }
         private void BlockFellOff()
         {
+            if (fellOff)
+                return;
+
+            fellOff = true;
+
             onBlockFellOff.Trigger();
         }
 

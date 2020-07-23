@@ -12,7 +12,10 @@ namespace EdwinGameDev
 
         public void ResetLives()
         {
-            currentLives = lives;
+            for (int i = currentLives; i < lives; i++)
+            {
+                AddLife();
+            }
         }
 
         public void AddLife()

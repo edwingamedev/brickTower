@@ -48,6 +48,7 @@ MonoBehaviour:
   onBlockSet: {fileID: 11400000, guid: fd6f02bf3c861204ca73fe392c6a9ced, type: 2}
   onBlockFellOff: {fileID: 11400000, guid: fbf96ed1b66ea694bafb93a7e5d7ce86, type: 2}
   rb: {fileID: 2563520869535429975}
+  gameGrid: {fileID: 11400000, guid: 70b9bf034e7a93e41be5a5816c0eaa9d, type: 2}
 --- !u!50 &2563520869535429975
 Rigidbody2D:
   serializedVersion: 4

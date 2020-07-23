@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -10,7 +9,6 @@ namespace EdwinGameDev
         private GameStateType currentGameStatus = GameStateType.Intro;
         private GameStateType previousGameStatus = GameStateType.Intro;
 
-        [SerializeField]
         private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
         public GameScreens gameScreens;
         public StringScriptableEvent gameSessionEvent;

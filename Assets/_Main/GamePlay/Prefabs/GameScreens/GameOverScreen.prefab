@@ -577,7 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventMap: {fileID: 11400000, guid: 20dbc0eaca7b7b34e99d0b568a388c29, type: 2}
   eventName: play
-  action: {fileID: 11400000, guid: b3f4ca546d921f843b1b9c88a594d076, type: 2}
+  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
 --- !u!1 &7272949655281584557
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventMap: {fileID: 11400000, guid: 20dbc0eaca7b7b34e99d0b568a388c29, type: 2}
   eventName: gotomenu
-  action: {fileID: 11400000, guid: b3f4ca546d921f843b1b9c88a594d076, type: 2}
+  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
 --- !u!1 &7272949655349460635
 GameObject:
   m_ObjectHideFlags: 0

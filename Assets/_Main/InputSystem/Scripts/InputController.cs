@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EdwinGameDev
@@ -15,11 +16,41 @@ namespace EdwinGameDev
         {
             UpdateInputMap();
         }
-        
+
         private void UpdateInputMap()
-        {            
+        {
             CheckInputProcessorType();
 
+            if (inputMap.inputTypeProcessor == InputTypeProcessor.Touch)
+            {
+                ValidateTouchInput();
+            }
+            else
+            {
+                ValidateInput();
+            }            
+        }
+
+        private void ValidateTouchInput()
+        {
+            InputType inputType = inputProcessor.CheckInputByType();
+
+            if(inputType!= InputType.NoInput)
+            {
+                InputMapper inputMapper = inputMap.eventMappers.FirstOrDefault(t => t.inputType == inputType);
+
+                ScriptableEvent action = inputMapper.scriptableEvent;
+
+                //Execute the action
+                if (action)
+                {
+                    action.Trigger();
+                }
+            }            
+        }
+
+        private void ValidateInput()
+        {
             foreach (InputMapper inputMapper in inputMap.eventMappers)
             {
                 InputType inputType = inputMapper.inputType;
@@ -49,7 +80,7 @@ namespace EdwinGameDev
                         break;
                     case InputType.Hold:
                         execute = inputProcessor.Hold();
-                        break;                    
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -71,7 +102,7 @@ namespace EdwinGameDev
         /// </summary>
         private void CheckInputProcessorType()
         {
-            if (inputMap.inputTypeProcessor == previousInputProcessor)
+            if (inputProcessor != null && inputMap.inputTypeProcessor == previousInputProcessor)
                 return;
 
             switch (inputMap.inputTypeProcessor)

@@ -15,37 +15,42 @@ namespace EdwinGameDev
 
         public bool Left()
         {
-            return touchDetector.DetectTouch(InputType.Left,false);
+            return false;
         }
 
         public bool Right()
         {
-            return touchDetector.DetectTouch(InputType.Right, false);
+            return false;
         }
 
         public bool Up()
         {
-            return touchDetector.DetectTouch(InputType.Up, false);
+            return false;
         }
 
         public bool Down()
         {
-            return touchDetector.DetectTouch(InputType.Down, false);
+            return false;
         }
 
         public bool Click()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public bool Release()
         {
-            throw new System.NotImplementedException();
+            return false;// touchDetector.DetectTouch(InputType.Release, false);
         }
 
         public bool Hold()
         {
-            throw new System.NotImplementedException();
+            return false;
+        }
+
+        public InputType CheckInputByType()
+        {
+            return touchDetector.DetectTouch();
         }
     }
 }

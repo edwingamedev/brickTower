@@ -38,5 +38,10 @@ namespace EdwinGameDev
         {
             return Input.GetButton("Jump");
         }
+
+        public InputType CheckInputByType()
+        {
+            return 0;
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 namespace EdwinGameDev
 {
@@ -7,95 +7,140 @@ namespace EdwinGameDev
     {
         private Vector2 fingerUp;
         private Vector2 fingerDown;
-        private float swipeThreshold = 20f;
+        private float swipeHorizontalThreshold = 20f;
+        private float swipeVerticalThreshold = 10f;
+        private InputType movedInput = InputType.NoInput;
+
+        private float touchBegan = 0;
+        private float releaseDelay = 0.25f;
 
         public TouchDetector()
         {
-           
+
         }
 
-        public bool DetectTouch(InputType touchType, bool detectSwipeOnlyAfterRelease)
+        public InputType DetectTouch()
         {
-            // Touch Detector
-            foreach (Touch touch in Input.touches)
+            // Finger on screen
+            if (Input.touchCount > 0)
             {
+                Touch touch = Input.GetTouch(0);
+                movedInput = InputType.NoInput;
+
+                // Finger touched
                 if (touch.phase == TouchPhase.Began)
                 {
+                    // Touched on screen
+                    touchBegan = Time.time;
+
                     fingerUp = touch.position;
                     fingerDown = touch.position;
                 }
 
-                //Detects Swipe while finger is still moving
+                // Finger moved
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    if (!detectSwipeOnlyAfterRelease)
+                    fingerDown = touch.position;
+
+                    // Detect swipe when moving
+                    movedInput = DetectSwipe(touch.position);
+
+                    if (movedInput != InputType.NoInput)
+                        return movedInput;
+                }
+
+                // Finger released
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    fingerUp = touch.position;
+
+                    // Valid Release
+                    if (Time.time - touchBegan < releaseDelay)
                     {
-                        fingerDown = touch.position;
-                        return CheckSwipe(touchType);
+                        if (fingerUp == fingerDown)
+                        {
+                            return InputType.Release;
+                        }
+                        else
+                        {
+                            return InputType.Click;
+                        }
+                    }
+                    else
+                    {
+                        // Click
+                        return InputType.Click;
                     }
                 }
 
-                //Detects swipe after finger is released
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    fingerDown = touch.position;
-                    return CheckSwipe(touchType);
-                }
-            }
-
-            return false;
-        }
-
-
-        private bool CheckSwipe(InputType touchType)
-        {
-            //Check if Vertical swipe
-            if (verticalMove() > swipeThreshold && verticalMove() > horizontalValMove())
-            {
-                if (fingerDown.y - fingerUp.y > 0 && touchType == InputType.Up)// Swipe Up
-                {
-                    return true;
-                }
-                else if (fingerDown.y - fingerUp.y < 0 && touchType == InputType.Down)// Swipe Down
-                {
-                    return true;
-                }
-
-                fingerUp = fingerDown;
-
-                // No Movement
-                return false;
-            } 
-            // Check if Horizontal swipe            
-            else if (horizontalValMove() > swipeThreshold && horizontalValMove() > verticalMove())
-            {
-                if (fingerDown.x - fingerUp.x > 0 && touchType == InputType.Right)// Swipe Right
-                {
-                    return true;
-                }
-                else if (fingerDown.x - fingerUp.x < 0 && touchType == InputType.Left)// Swipe Left
-                {
-                    return true;
-                }
-
-                fingerUp = fingerDown;
-
-                // No Movement
-                return false;
+                // No Touch
+                return movedInput;
             }
             // No Movement
             else
             {
-                return false;
+                return movedInput;
             }
         }
 
-        float verticalMove()
+        private InputType DetectSwipe(Vector2 touchPosition)
+        {
+            // Vertical Movement
+            if (VerticalMove() > HorizontalMove() && VerticalMove() > swipeVerticalThreshold)
+            {
+                //fingerDown = touchPosition;
+
+                if (fingerDown.y - fingerUp.y > 0)// Swipe Up
+                {
+                    fingerUp = fingerDown;
+                    return InputType.Up;
+                }
+                else if (fingerDown.y - fingerUp.y < 0)// Swipe Down
+                {
+                    fingerUp = fingerDown;
+                    return InputType.Down;
+                }
+
+                fingerUp = fingerDown;
+
+                // No Movement
+                return InputType.NoInput;
+
+            }
+            // Horizontal
+            else if (HorizontalMove() > VerticalMove() && HorizontalMove() > swipeHorizontalThreshold)
+            {
+                //fingerDown = touchPosition;
+
+                if (fingerDown.x - fingerUp.x > 0)// Swipe Right
+                {
+                    fingerUp = fingerDown;
+                    return InputType.Right;
+                }
+                else if (fingerDown.x - fingerUp.x < 0)// Swipe Left
+                {
+                    fingerUp = fingerDown;
+                    return InputType.Left;
+                }
+
+                fingerUp = fingerDown;
+
+                // No Movement
+                return InputType.NoInput;
+            }
+            // No Movement
+            else
+            {
+                return InputType.NoInput;
+            }
+        }
+
+        private float VerticalMove()
         {
             return Mathf.Abs(fingerDown.y - fingerUp.y);
         }
 
-        float horizontalValMove()
+        private float HorizontalMove()
         {
             return Mathf.Abs(fingerDown.x - fingerUp.x);
         }

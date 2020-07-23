@@ -9,5 +9,6 @@
         bool Click();
         bool Release();
         bool Hold();
+        InputType CheckInputByType();
     }
 }

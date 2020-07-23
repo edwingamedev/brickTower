@@ -9,6 +9,7 @@
 
         Click,
         Release,
-        Hold
+        Hold,
+        NoInput
     }
 }

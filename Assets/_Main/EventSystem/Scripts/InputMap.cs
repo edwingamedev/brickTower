@@ -15,8 +15,7 @@ namespace EdwinGameDev
     public enum InputTypeProcessor
     {
         Touch,
-        Keyboard,
-        Mouse
+        Keyboard
     }
 
     [CreateAssetMenu(menuName = "Edwin Game Dev/InputMap")]

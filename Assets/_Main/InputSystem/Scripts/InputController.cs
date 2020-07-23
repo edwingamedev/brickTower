@@ -83,9 +83,6 @@ namespace EdwinGameDev
                 case InputTypeProcessor.Touch:
                     inputProcessor = new TouchProcessor();
                     break;
-                case InputTypeProcessor.Mouse:
-                    inputProcessor = new MouseProcessor();
-                    break;
             }
 
             previousInputProcessor = inputMap.inputTypeProcessor;

@@ -14,6 +14,7 @@ namespace EdwinGameDev
         private bool paused = true;
         public int towerHeight = 0;
         public BlockType nextBlock;
+        public Transform heightBlock;
 
         public void SetPause(bool paused)
         {
@@ -67,6 +68,7 @@ namespace EdwinGameDev
 
             blocksOfSession.Clear();
             towerHeight = 0;
+            heightBlock = null;
         }
 
         public void AddBlock(Block block)
@@ -103,17 +105,32 @@ namespace EdwinGameDev
             }
         }
 
-        public bool CheckTowerHeight()
+        public Transform GetHighestBlock()
         {
-            if (blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition() > towerHeight + 5)
+            // No Highest yet
+            if (heightBlock == null)
             {
-                towerHeight += 2;
-                return true;
+                if (blocksOfSession.Any())
+                    heightBlock = blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition().transform;
             }
             else
             {
-                return false;
+                Transform lastPlaceBlock = blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition().transform;
+
+                if (lastPlaceBlock.position.y > heightBlock.position.y)
+                {
+                    heightBlock = lastPlaceBlock;
+                }
+                else
+                {
+                    Block block = blocksOfSession.FirstOrDefault(x => x.GetHighestPiecePosition().transform.position.y > heightBlock.position.y);
+
+                    if (block)
+                        heightBlock = block.higherPiece.transform;
+                }
             }
+
+            return heightBlock;
         }
     }
 }

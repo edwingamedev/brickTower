@@ -11,12 +11,14 @@ namespace EdwinGameDev
         public UnityEvent Action;
         private void OnEnable()
         {
-            scriptableEvent.OnTriggered += Callback;
+            if (scriptableEvent != null)
+                scriptableEvent.OnTriggered += Callback;
         }
 
         private void OnDisable()
         {
-            scriptableEvent.OnTriggered -= Callback;
+            if (scriptableEvent != null)
+                scriptableEvent.OnTriggered -= Callback;
         }
 
         private void Callback()

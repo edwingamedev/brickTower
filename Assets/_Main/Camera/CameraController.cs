@@ -8,40 +8,39 @@ namespace EdwinGameDev
     {
         public GameContainer gameContainer;
         public Transform spawnPoint;
-        public bool isLerping = false;
-        private Vector3 oldPosition;
-        private Vector3 newPosition;
+        public Transform target;
+        public float smoothTime = 1F;
+        private Vector3 velocity = Vector3.zero;
+        private Vector3 startingTargetPos;
+        private Vector3 startingCameraPos;
 
-        public float movementTime = 5;
-        public float lerpValue = 0;
-
-        public void MoveUp()
+        private void Start()
         {
-            if (!isLerping && gameContainer.CheckTowerHeight())
-            {
-                spawnPoint.Translate(Vector3.up * 1);
+            startingTargetPos = target.position;
+            startingCameraPos = transform.position;
+        }
 
-                oldPosition = transform.position;
-                newPosition = oldPosition + Vector3.up * 1;
-                isLerping = true;
-            }
+        public void ResetCameraPos()
+        {
+            target.position = startingTargetPos;
+            transform.position = startingCameraPos;
+        }
+
+        public void CheckTowerHeight()
+        {
+            Transform newPos = gameContainer.GetHighestBlock();
+
+            if (newPos)
+                target.position = new Vector3(startingTargetPos.x, startingTargetPos.y + Mathf.CeilToInt(newPos.position.y) - startingTargetPos.y);
         }
 
         void Update()
         {
-            if (isLerping)
-            {
-                if (lerpValue < 1)
-                {
-                    lerpValue += Time.deltaTime / movementTime;
-                    transform.position = Vector3.Lerp(oldPosition, newPosition, lerpValue);
-                }
-                else
-                {
-                    lerpValue = 0;
-                    isLerping = false;
-                }
-            }
+            // Define a target position above and behind the target transform
+            Vector3 targetPosition = target.TransformPoint(new Vector3(5, 9.5f, -10));
+
+            // Smoothly move the camera towards that target position
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
     }
 }

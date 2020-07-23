@@ -19,6 +19,8 @@ namespace EdwinGameDev
         private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
         public GameGrid gameGrid;
         private bool fellOff = false;
+        [HideInInspector]
+        public Piece higherPiece;
 
         private void Update()
         {
@@ -52,9 +54,10 @@ namespace EdwinGameDev
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        public float GetHighestPiecePosition()
+        public Piece GetHighestPiecePosition()
         {
-            return pieces.Max(p => p.transform.position.y);
+            higherPiece = pieces.First(pi => pi.transform.position.y == pieces.Max(p => p.transform.position.y));
+            return higherPiece;
         }
 
         public void Build(Vector2Int spawnPos, BlockType blockType, Piece[] pieces, Vector2Int[,] offset)
@@ -75,7 +78,7 @@ namespace EdwinGameDev
 
                 switch (movementRestriction)
                 {
-                    case MovementRestriction.FellOff:                        
+                    case MovementRestriction.FellOff:
                         PlaceBlock();
 
                         BlockFellOff();

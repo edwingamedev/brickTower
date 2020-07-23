@@ -26,8 +26,6 @@ namespace EdwinGameDev
             blockCommands.moveRight.OnTriggered += BlockMoveRight;
             blockCommands.moveDown.OnTriggered += BlockMoveDown;
             blockCommands.turnBlock.OnTriggered += BlockTurn;
-            gameContainer.ResetGame();
-
         }
 
         private void OnDisable()

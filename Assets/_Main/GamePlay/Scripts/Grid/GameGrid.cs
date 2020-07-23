@@ -42,8 +42,6 @@ namespace EdwinGameDev
             float pieceColliderHeight = blockPieces[0].col.bounds.extents.y;
             bool sameBlockCollision = false;
 
-            Debug.Log("vertical " + direction);
-
             for (int i = 0; i < 3; i++)
             {
                 Vector2 rayOrigin = new Vector2(centerCoord.x - pieceColliderWidth, centerCoord.y + pieceColliderHeight * direction);
@@ -80,8 +78,6 @@ namespace EdwinGameDev
             float pieceColliderWidth = blockPieces[0].col.bounds.extents.x;
             float pieceColliderHeight = blockPieces[0].col.bounds.extents.y;
             bool sameBlockCollision = false;
-
-            Debug.Log("Horizontal " + direction);
 
             // Left
             for (int i = 0; i < 3; i++)

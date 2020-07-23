@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Linq;
 using System.Collections.Generic;
-using System;
 
 namespace EdwinGameDev
 {
@@ -11,7 +9,7 @@ namespace EdwinGameDev
     {
         public BlockMovement blockMovement;
         public float blockDropRate;
-        public List<Block> blocksOfSession = new List<Block>();
+        private List<Block> blocksOfSession = new List<Block>();
         private Block currentPlayingBlock => blocksOfSession.Last();
         private bool paused = true;
         public int towerHeight = 0;
@@ -55,13 +53,12 @@ namespace EdwinGameDev
 
         public void ResetGame()
         {
-            foreach (Block block in blocksOfSession)
+            for (int i = blocksOfSession.Count - 1; i >= 0; i--)
             {
-                RemoveBlock(block);
+                RemoveBlock(blocksOfSession[i]);
             }
 
             blocksOfSession.Clear();
-
             towerHeight = 0;
         }
 

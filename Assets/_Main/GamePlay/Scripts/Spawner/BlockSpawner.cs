@@ -14,7 +14,14 @@ namespace EdwinGameDev
 
         private void Awake()
         {
-            nextBlock = blockFactory.GenerateRandomBlockType();
+            ResetGame();
+
+            nextBlock = blockFactory.GenerateRandomBlockType();            
+        }
+
+        public void ResetGame()
+        {
+            gameContainer.ResetGame();
         }
 
         public void SpawnRandomBlock()

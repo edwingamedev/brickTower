@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 namespace EdwinGameDev
@@ -28,26 +28,94 @@ namespace EdwinGameDev
             }
         }
 
-        public bool CheckIfCollides(Vector2 coordToTest, float distance, Piece[] blockPieces)
+        public bool CheckIfCollides(Vector2 centerCoord, float distance, Vector2 movementDirection, Piece[] blockPieces)
         {
-            RaycastHit2D raycast = Physics2D.Raycast(coordToTest, Vector2.down, distance);
+            return VerticalCollisions(centerCoord, distance, Mathf.FloorToInt(movementDirection.y), blockPieces) || 
+                    HorizontalCollisions(centerCoord, distance, Mathf.FloorToInt(movementDirection.x), blockPieces);
+        }
+
+        private bool VerticalCollisions(Vector3 centerCoord, float distance, int direction, Piece[] blockPieces)
+        {
+            direction = Mathf.Clamp(direction, -1, 1);
+
+            float pieceColliderWidth = blockPieces[0].col.bounds.extents.x;
+            float pieceColliderHeight = blockPieces[0].col.bounds.extents.y;
             bool sameBlockCollision = false;
 
-            if (raycast)
+            Debug.Log("vertical " + direction);
+
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < blockPieces.Length; i++)
+                Vector2 rayOrigin = new Vector2(centerCoord.x - pieceColliderWidth, centerCoord.y + pieceColliderHeight * direction);
+                rayOrigin += Vector2.right * (pieceColliderWidth * i);
+
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * direction, distance);
+                Debug.DrawRay(rayOrigin, Vector2.up * distance * direction, Color.white);
+
+
+                if (hit)
                 {
-                    if (sameBlockCollision)
-                        break;
+                    for (int j = 0; j < blockPieces.Length; j++)
+                    {
+                        if (sameBlockCollision)
+                            break;
 
-                    sameBlockCollision = raycast.collider == blockPieces[i].col;
+                        sameBlockCollision = hit.collider == blockPieces[j].col;
+                    }
+
+                    if (!sameBlockCollision)
+                        Debug.Log($"Collided bound Collided {hit.transform.name}: {hit.transform.position}");
+
+
+                    return !sameBlockCollision && hit;
                 }
-
-                if (!sameBlockCollision)
-                    Debug.Log($"Collided {raycast.transform.name}: {raycast.transform.position}");
             }
 
-            return !sameBlockCollision && raycast;
+            return sameBlockCollision;
         }
+        private bool HorizontalCollisions(Vector3 centerCoord, float distance, int direction, Piece[] blockPieces)
+        {
+            direction = Mathf.Clamp(direction, -1, 1);
+
+            float pieceColliderWidth = blockPieces[0].col.bounds.extents.x;
+            float pieceColliderHeight = blockPieces[0].col.bounds.extents.y;
+            bool sameBlockCollision = false;
+
+            Debug.Log("Horizontal " + direction);
+
+            // Left
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 rayOrigin = new Vector2(centerCoord.x + pieceColliderWidth * direction, centerCoord.y - pieceColliderHeight);
+                rayOrigin += Vector2.up * (pieceColliderHeight * i);
+
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * direction, distance);
+                Debug.DrawRay(rayOrigin, Vector2.right * distance * direction, Color.white);
+
+
+                if (hit)
+                {
+                    for (int j = 0; j < blockPieces.Length; j++)
+                    {
+                        if (sameBlockCollision)
+                            break;
+
+                        sameBlockCollision = hit.collider == blockPieces[j].col;
+                    }
+
+                    if (!sameBlockCollision)
+                        Debug.Log($"Collided bound Collided {hit.transform.name}: {hit.transform.position}");
+
+
+                    return !sameBlockCollision && hit;
+                }
+            }
+
+            // Right
+
+            return sameBlockCollision;
+        }
+
+
     }
 }

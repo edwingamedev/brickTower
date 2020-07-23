@@ -22,3 +22,5 @@ MonoBehaviour:
     scriptableEvent: {fileID: 11400000, guid: a569a5a4f7dae9e42874073418786b54, type: 2}
   - inputType: 2
     scriptableEvent: {fileID: 11400000, guid: b233fbcbfb19c264fbf5d35976bb7946, type: 2}
+  - inputType: 4
+    scriptableEvent: {fileID: 0}

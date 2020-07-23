@@ -13,7 +13,7 @@ namespace EdwinGameDev
 
     public class Piece : MonoBehaviour
     {
-        public Vector2 pieceCoordinates;
+        //public Vector2 pieceCoordinates => transform.position;
         [SerializeField] private SpriteRenderer spriteRenderer;
         public GameGrid gameGrid;
         public Collider2D col;
@@ -28,7 +28,7 @@ namespace EdwinGameDev
         /// Checks to see if the tile can be moved to the specified positon.
         /// </summary>
         /// <param name="endPos">Coordinates of the position you are trying to move the tile to</param>
-        public MovementRestriction CanPieceMove(Piece[] blockPieces, Vector2 endPos)
+        public MovementRestriction CanPieceMove(Piece[] blockPieces, Vector2 movementDirection, Vector2 endPos)
         {
             if (gameGrid.HasFellOffBounds(endPos))
             {
@@ -40,7 +40,7 @@ namespace EdwinGameDev
                 return MovementRestriction.CannotMove;
             }
 
-            if (gameGrid.CheckIfCollides(endPos, collisionDistance, blockPieces))
+            if (gameGrid.CheckIfCollides(endPos, collisionDistance, movementDirection, blockPieces))
             {
                 return MovementRestriction.CannotMove;
             }                
@@ -53,7 +53,7 @@ namespace EdwinGameDev
         /// </summary>
         public bool PlacePiece()
         {
-            if (pieceCoordinates.y >= gameGrid.gridMaxY)
+            if (transform.position.y >= gameGrid.gridMaxY)
             {
                 return false;
             }
@@ -67,7 +67,7 @@ namespace EdwinGameDev
         /// </summary>
         public void MoveTile(Vector2 movement)
         {
-            Vector2 endPos = pieceCoordinates + movement;
+            Vector2 endPos = new Vector2(transform.position.x, transform.position.y) + movement;
             UpdatePosition(endPos);
         }
 
@@ -76,7 +76,7 @@ namespace EdwinGameDev
         /// </summary>
         public void UpdatePosition(Vector2 newPos)
         {
-            pieceCoordinates = newPos;
+            //pieceCoordinates = newPos;
             gameObject.transform.position = new Vector2(newPos.x, newPos.y);
         }
 
@@ -85,7 +85,7 @@ namespace EdwinGameDev
         /// </summary>
         public void RotateTile(Vector2 originPos, bool clockwise)
         {
-            Vector2 relativePos = pieceCoordinates - originPos;
+            Vector2 relativePos = new Vector2(transform.position.x, transform.position.y) - originPos;
             Vector2[] rotMatrix = clockwise ? new Vector2[2] { new Vector2(0, -1), new Vector2(1, 0) }
                                                : new Vector2[2] { new Vector2(0, 1), new Vector2(-1, 0) };
             float newXPos = rotMatrix[0].x * relativePos.x + rotMatrix[1].x * relativePos.y;

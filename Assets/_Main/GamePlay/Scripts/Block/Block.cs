@@ -61,7 +61,7 @@ namespace EdwinGameDev
 
             for (int i = 0; i < pieces.Length; i++)
             {
-                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates);
+                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement, movement + new Vector2(pieces[i].transform.position.x, pieces[i].transform.position.y));
 
                 switch (movementRestriction)
                 {
@@ -116,8 +116,7 @@ namespace EdwinGameDev
 
             for (int i = 0; i < pieces.Length; i++)
             {
-                pieces[i].RotateTile(pieces[0].pieceCoordinates, clockwise);
-
+                pieces[i].RotateTile(pieces[0].transform.position, clockwise);
             }
 
             if (!shouldOffset)
@@ -172,7 +171,7 @@ namespace EdwinGameDev
         {
             for (int i = 0; i < pieces.Length; i++)
             {
-                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement + pieces[i].pieceCoordinates);
+                MovementRestriction movementRestriction = pieces[i].CanPieceMove(pieces, movement, movement + new Vector2(pieces[i].transform.position.x, pieces[i].transform.position.y));
 
                 if (movementRestriction == MovementRestriction.CannotMove)
                 {

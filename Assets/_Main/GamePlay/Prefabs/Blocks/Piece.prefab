@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &1804380005271812327
 MonoBehaviour:
@@ -122,8 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc568c2994721747ae80b4a63713c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceCoordinates: {x: 0, y: 0}
   spriteRenderer: {fileID: 5288310962596498363}
   gameGrid: {fileID: 11400000, guid: 70b9bf034e7a93e41be5a5816c0eaa9d, type: 2}
   col: {fileID: 6517460132249443994}
-  collisionDistance: 0
+  collisionDistance: 0.05

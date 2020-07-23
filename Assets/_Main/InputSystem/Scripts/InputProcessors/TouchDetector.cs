@@ -7,7 +7,7 @@ namespace EdwinGameDev
     {
         private Vector2 fingerUp;
         private Vector2 fingerDown;
-        private float swipeHorizontalThreshold = 20f;
+        private float swipeHorizontalThreshold = 30f;
         private float swipeVerticalThreshold = 10f;
         private InputType movedInput = InputType.NoInput;
 

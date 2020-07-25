@@ -95,11 +95,11 @@ namespace EdwinGameDev
                         return false;
 
                     case MovementRestriction.CannotMove:
-                        //Debug.Log("Cant Go there!");
+                        Debug.Log("Cant Go there!");
 
                         if (movement.y < 0)
                         {
-                            //Debug.Log("Placed!");
+                            Debug.Log("Placed!");
                             PlaceBlock();
                         }
                         return false;
@@ -122,6 +122,8 @@ namespace EdwinGameDev
                 return;
 
             fellOff = true;
+
+            Debug.Log("BlockFellOff");
 
             onBlockFellOff.Trigger();
         }

@@ -8,7 +8,9 @@ namespace EdwinGameDev
     {
         public int lives;
         private int currentLives;
+
         public ScriptableEvent noMoveLives;
+        public StringScriptableEvent onLivesChanged;
 
         public void ResetLives()
         {
@@ -21,14 +23,17 @@ namespace EdwinGameDev
         public void AddLife()
         {
             currentLives++;
+
+            onLivesChanged?.Trigger(currentLives.ToString());
         }
 
         public void RemoveLife()
         {
             currentLives--;
+            onLivesChanged?.Trigger(currentLives.ToString());
 
             if (currentLives <= 0)
-                NoMoreLives();
+                NoMoreLives();            
         }
 
         public void NoMoreLives()

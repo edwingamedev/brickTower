@@ -95,7 +95,7 @@ namespace EdwinGameDev
         public void GameOver()
         {
             ChangeGameState(GameStateType.GameOver);
-            Execute(StateCommandType.ChangeScene);
+            Execute(StateCommandType.OpenScene);
 
             // Pause
             gameContainer.SetPause(true);

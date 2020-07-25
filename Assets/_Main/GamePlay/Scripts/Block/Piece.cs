@@ -53,7 +53,7 @@ namespace EdwinGameDev
         /// </summary>
         public bool PlacePiece()
         {
-            if (transform.position.y >= gameGrid.gridMaxY)
+            if (transform.position.y >= gameGrid.currentGridTop)
             {
                 return false;
             }

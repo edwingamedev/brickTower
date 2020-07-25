@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca7473c77a11f44098d47f5eaef4bca, type: 3}
-  m_Name: IntroEventMap
+  m_Script: {fileID: 11500000, guid: 9259598f0c307e24ab2b0c03966aa2c8, type: 3}
+  m_Name: State Command Scriptable Event
   m_EditorClassIdentifier: 
-  eventMappers:
-  - eventName: Play
-    scriptableEvent: {fileID: 11400000, guid: a692de0a4b9049d429820699446a0806, type: 2}
-  - eventName: Init
-    scriptableEvent: {fileID: 0}

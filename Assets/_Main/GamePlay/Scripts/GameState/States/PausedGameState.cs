@@ -4,60 +4,38 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    public class PausedGameState : IGameState
+    public class PausedGameState : AGameState
     {
-        public GameStateType StateType { get; set; }
-        private GameObject screenPrefab;
-        private GameScreenSettings screenSettings;
-
         public PausedGameState(GameScreenSettings screenSettings)
         {
             StateType = GameStateType.Paused;
             this.screenSettings = screenSettings;
         }
-
-        public void Execute(string actionName)
+        public override void Execute(StateCommandType stateCommandType)
         {
-            EventMapper eventMapper = screenSettings.eventMap.eventMappers.FirstOrDefault(t => t.eventName.ToLower() == actionName);
-
-            if (string.IsNullOrEmpty(eventMapper.eventName))
-                return;
-
-            // Menu
-            if (eventMapper.eventName.ToLower() == "gotomenu")
             {
-                ChangeScene(eventMapper);
+                switch (stateCommandType)
+                {
+                    case StateCommandType.ResumeScene:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.OpenScene:
+                        StartScene(stateCommandType);
+                        break;
+                    case StateCommandType.ChangeScene:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.StartGame:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.PauseGame:
+                        StartScene(stateCommandType);
+                        break;
+                    case StateCommandType.GoToMenu:
+                        ChangeScene(stateCommandType);
+                        break;
+                }
             }
-
-            // pause Game
-            if (eventMapper.eventName.ToLower() == "pausegame")
-            {
-                PauseGame(eventMapper);
-            }
-
-            // resume
-            if (eventMapper.eventName.ToLower() == "resumegame")
-            {
-                ChangeScene(eventMapper);
-            }
-        }
-
-        private void ChangeScene(EventMapper eventMapper)
-        {
-            // Disable screen
-            screenPrefab.SetActive(false);
-
-            eventMapper.scriptableEvent?.Trigger();
-        }
-
-        private void PauseGame(EventMapper eventMapper)
-        {
-            if (screenPrefab == null)
-                screenPrefab = GameObject.Instantiate(screenSettings.screenPrefab);
-            else
-                screenPrefab.SetActive(true);
-
-            eventMapper.scriptableEvent?.Trigger();
         }
     }
 }

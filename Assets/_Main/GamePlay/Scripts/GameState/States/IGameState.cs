@@ -5,6 +5,6 @@ namespace EdwinGameDev
     public interface IGameState
     {
         GameStateType StateType { get; set; }
-        void Execute(string actionName);
+        void Execute(StateCommandType commandType);
     }
 }

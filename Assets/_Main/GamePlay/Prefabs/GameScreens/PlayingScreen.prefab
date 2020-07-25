@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 6798837957387662665}
   - component: {fileID: 6798837957387662670}
   - component: {fileID: 6798837957387662671}
-  - component: {fileID: 1727798889389676914}
+  - component: {fileID: 7524047869225719524}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727798889389676914}
+      - m_Target: {fileID: 7524047869225719524}
         m_MethodName: Callback
         m_Mode: 1
         m_Arguments:
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 4, y: 4}
   m_UseGraphicAlpha: 1
---- !u!114 &1727798889389676914
+--- !u!114 &7524047869225719524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1165,12 +1165,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6798837957387662669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81aa279aae499a1449d760b61c7a8257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: 9097376b0261aaa478a30d96249e6e68, type: 2}
-  eventName: PauseGame
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
+  stateCommand: 4
+  action: {fileID: 11400000, guid: 6c4c0f1b00cdb8c4e944b3e660eaaeaa, type: 2}
 --- !u!1 &6798837957990951177
 GameObject:
   m_ObjectHideFlags: 0

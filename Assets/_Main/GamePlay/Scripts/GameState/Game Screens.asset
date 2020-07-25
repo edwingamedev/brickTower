@@ -16,16 +16,16 @@ MonoBehaviour:
   - gameStateType: 0
     screenPrefab: {fileID: 9048330673652814202, guid: f8b7371fd61469346bfcec95680cbe73,
       type: 3}
-    eventMap: {fileID: 11400000, guid: 2d408282bc8aa88448f88151cba5106b, type: 2}
+    screenCommands: {fileID: 11400000, guid: d5edcce6600acb94f92f093eb3c5c310, type: 2}
   - gameStateType: 1
     screenPrefab: {fileID: 6798837957990951177, guid: 66bd0de6fdf1ce440ae13a103475fb3b,
       type: 3}
-    eventMap: {fileID: 11400000, guid: 9097376b0261aaa478a30d96249e6e68, type: 2}
+    screenCommands: {fileID: 11400000, guid: 03f7a26e0d284864c990781723c621cc, type: 2}
   - gameStateType: 2
     screenPrefab: {fileID: 2608722725960943728, guid: 56ec9b4f8d7df8f48b8a4a73a2b7b7e2,
       type: 3}
-    eventMap: {fileID: 11400000, guid: d4c5015253a363041ae6f1bf27289379, type: 2}
+    screenCommands: {fileID: 11400000, guid: d6f81dbf92985154ca678912fab1fc69, type: 2}
   - gameStateType: 3
     screenPrefab: {fileID: 5523053522539582674, guid: 943648d3b6b794948b700d8a81534ef8,
       type: 3}
-    eventMap: {fileID: 11400000, guid: 20dbc0eaca7b7b34e99d0b568a388c29, type: 2}
+    screenCommands: {fileID: 11400000, guid: 6884890dada49934f98b18a392a05016, type: 2}

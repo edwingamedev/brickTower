@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 900559089423013131}
   - component: {fileID: 900559089423013130}
   - component: {fileID: 900559089423013133}
-  - component: {fileID: 4473778022019290307}
+  - component: {fileID: 6782970577957534756}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4473778022019290307}
+      - m_Target: {fileID: 6782970577957534756}
         m_MethodName: Callback
         m_Mode: 1
         m_Arguments:
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!114 &4473778022019290307
+--- !u!114 &6782970577957534756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,12 +157,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 900559089423013135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81aa279aae499a1449d760b61c7a8257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: d4c5015253a363041ae6f1bf27289379, type: 2}
-  eventName: GoToMenu
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
+  stateCommand: 5
+  action: {fileID: 11400000, guid: 6c4c0f1b00cdb8c4e944b3e660eaaeaa, type: 2}
 --- !u!1 &900559089492451897
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +334,7 @@ GameObject:
   - component: {fileID: 2608722724420490288}
   - component: {fileID: 2608722724420490295}
   - component: {fileID: 2608722724420490294}
-  - component: {fileID: 804904185233777147}
+  - component: {fileID: 2010073024476213487}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -444,7 +443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804904185233777147}
+      - m_Target: {fileID: 2010073024476213487}
         m_MethodName: Callback
         m_Mode: 1
         m_Arguments:
@@ -470,7 +469,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!114 &804904185233777147
+--- !u!114 &2010073024476213487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,12 +478,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2608722724420490292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81aa279aae499a1449d760b61c7a8257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: d4c5015253a363041ae6f1bf27289379, type: 2}
-  eventName: ResumeGame
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
+  stateCommand: 1
+  action: {fileID: 11400000, guid: 6c4c0f1b00cdb8c4e944b3e660eaaeaa, type: 2}
 --- !u!1 &2608722725556156938
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +576,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 58.9
+  m_fontSize: 58.95
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1

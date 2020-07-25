@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ae1c92b84e374299de8b05cbbd441, type: 3}
+  m_Name: IntroScreenCommands
+  m_EditorClassIdentifier: 
+  stateCommands:
+  - stateCommandType: 0
+    scriptableEvent: {fileID: 0}
+  - stateCommandType: 1
+    scriptableEvent: {fileID: 0}
+  - stateCommandType: 3
+    scriptableEvent: {fileID: 11400000, guid: a692de0a4b9049d429820699446a0806, type: 2}
+  - stateCommandType: 4
+    scriptableEvent: {fileID: 0}
+  - stateCommandType: 5
+    scriptableEvent: {fileID: 0}
+  - stateCommandType: 2
+    scriptableEvent: {fileID: 0}

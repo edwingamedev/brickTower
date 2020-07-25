@@ -351,7 +351,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 58
+  m_fontSize: 57.95
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 5523053524218775698}
   - component: {fileID: 5523053524218775701}
   - component: {fileID: 5523053524218775700}
-  - component: {fileID: 7417277082391355948}
+  - component: {fileID: 4890239646456143057}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7417277082391355948}
+      - m_Target: {fileID: 4890239646456143057}
         m_MethodName: Callback
         m_Mode: 1
         m_Arguments:
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!114 &7417277082391355948
+--- !u!114 &4890239646456143057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -572,12 +572,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5523053524218775702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81aa279aae499a1449d760b61c7a8257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: 20dbc0eaca7b7b34e99d0b568a388c29, type: 2}
-  eventName: play
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
+  stateCommand: 3
+  action: {fileID: 11400000, guid: 6c4c0f1b00cdb8c4e944b3e660eaaeaa, type: 2}
 --- !u!1 &7272949655281584557
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +590,7 @@ GameObject:
   - component: {fileID: 7272949655281584553}
   - component: {fileID: 7272949655281584552}
   - component: {fileID: 7272949655281584559}
-  - component: {fileID: 8871059749268734060}
+  - component: {fileID: 7708557735914008790}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -700,7 +699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8871059749268734060}
+      - m_Target: {fileID: 7708557735914008790}
         m_MethodName: Callback
         m_Mode: 1
         m_Arguments:
@@ -726,7 +725,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!114 &8871059749268734060
+--- !u!114 &7708557735914008790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -735,12 +734,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7272949655281584557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 81aa279aae499a1449d760b61c7a8257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: 20dbc0eaca7b7b34e99d0b568a388c29, type: 2}
-  eventName: gotomenu
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
+  stateCommand: 5
+  action: {fileID: 11400000, guid: 6c4c0f1b00cdb8c4e944b3e660eaaeaa, type: 2}
 --- !u!1 &7272949655349460635
 GameObject:
   m_ObjectHideFlags: 0

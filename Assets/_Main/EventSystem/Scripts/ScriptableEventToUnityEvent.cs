@@ -9,6 +9,7 @@ namespace EdwinGameDev
     {
         public ScriptableEvent scriptableEvent;
         public UnityEvent Action;
+        public UnityEvent<StateCommandType> GameStateTypeAction;
         private void OnEnable()
         {
             if (scriptableEvent != null)

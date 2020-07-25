@@ -9,25 +9,35 @@ namespace EdwinGameDev
     public class Block : MonoBehaviour
     {
         public BlockType blockType;
+        [HideInInspector] public Piece higherPiece;
+        [SerializeField] private ScriptableEvent onBlockSet;
+        [SerializeField] private ScriptableEvent onBlockFellOff;
+        [SerializeField] private Rigidbody2D rb;
+        [SerializeField] private GameGrid gameGrid;
+
         private Piece[] pieces;
         private int rotationIndex { get; set; }
         private Vector2Int[,] offset;
-        public ScriptableEvent onBlockSet;
-        public ScriptableEvent onBlockFellOff;
-        [SerializeField] private Rigidbody2D rb;
-        private bool previousSimulated = false;
+
         private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
-        public GameGrid gameGrid;
+        private bool previousSimulated = false;
+
         private bool fellOff = false;
-        [HideInInspector]
-        public Piece higherPiece;
+        private bool isPlayableBlock = false;
+
 
         private void Update()
         {
-            if (!fellOff && gameGrid.HasFellOffBounds(pieces[0].transform.position))
+            if (isPlayableBlock && !fellOff && gameGrid.HasFellOffBounds(pieces[0].transform.position))
             {
                 BlockFellOff();
             }
+        }
+
+        public void DisableBlock()
+        {
+            isPlayableBlock = true;
+            DisablePhysics();
         }
 
         public void ResumePhysics()
@@ -85,11 +95,11 @@ namespace EdwinGameDev
                         return false;
 
                     case MovementRestriction.CannotMove:
-                        Debug.Log("Cant Go there!");
+                        //Debug.Log("Cant Go there!");
 
                         if (movement.y < 0)
                         {
-                            Debug.Log("Placed!");
+                            //Debug.Log("Placed!");
                             PlaceBlock();
                         }
                         return false;

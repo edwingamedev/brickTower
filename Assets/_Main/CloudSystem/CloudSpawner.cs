@@ -28,8 +28,8 @@ namespace EdwinGameDev
         {
             bool dir = Random.Range(0, 2) != 0;
 
-            Vector3 spawnPos = dir ? new Vector3(gameGrid.gridMinX * 1.5f, Random.Range(gameGrid.gridMinY, gameGrid.gridMaxY)) : 
-                                    new Vector3(gameGrid.gridMaxX * 1.5f, Random.Range(gameGrid.gridMinY, gameGrid.gridMaxY));
+            Vector3 spawnPos = dir ? new Vector3(gameGrid.gridMinX * 1.5f, Random.Range(gameGrid.currentGridBottom, gameGrid.currentGridTop)) : 
+                                    new Vector3(gameGrid.gridMaxX * 1.5f, Random.Range(gameGrid.currentGridBottom, gameGrid.currentGridTop));
 
             GameObject cloudGO = Instantiate(cloudPrefab, spawnPos, Quaternion.identity);
             Cloud cloud = cloudGO.GetComponent<Cloud>();

@@ -8,6 +8,6 @@ namespace EdwinGameDev
     {
         public GameStateType gameStateType;
         public GameObject screenPrefab;
-        public EventMap eventMap;
+        public ScreenCommands screenCommands;
     }
 }

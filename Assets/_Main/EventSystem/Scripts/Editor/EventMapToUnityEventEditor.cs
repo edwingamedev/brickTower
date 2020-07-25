@@ -31,7 +31,7 @@ namespace EdwinGameDev
             eventMapToUnityEvent.eventName = choices[choiceIndex];
 
             // Save the changes back to the object
-            EditorUtility.SetDirty(target);
+            //EditorUtility.SetDirty(target);
         }
     }
 }

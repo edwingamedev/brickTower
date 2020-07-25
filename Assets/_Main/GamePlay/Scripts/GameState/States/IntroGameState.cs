@@ -4,57 +4,41 @@ using System.Linq;
 
 namespace EdwinGameDev
 {
-    public class IntroGameState : IGameState
+    public class IntroGameState : AGameState
     {
-        public GameStateType StateType { get; set; }
-        private GameObject screenPrefab;
-        private GameScreenSettings screenSettings;
-
         public IntroGameState(GameScreenSettings screenSettings)
         {
             StateType = GameStateType.Intro;
             this.screenSettings = screenSettings;
         }
 
-        public void Execute(string actionName)
+        public override void Execute(StateCommandType stateCommandType)
         {
-            EventMapper eventMapper = screenSettings.eventMap.eventMappers.FirstOrDefault(t => t.eventName.ToLower() == actionName);
-
-            if (string.IsNullOrEmpty(eventMapper.eventName))
             {
-                Debug.Log($"IntroGameState {actionName}");
-                return;
+                switch (stateCommandType)
+                {
+                    case StateCommandType.ResumeScene:
+                        Resume(stateCommandType);
+                        break;
+                    case StateCommandType.OpenScene:
+                        StartScene(stateCommandType);
+                        break;
+                    case StateCommandType.ChangeScene:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.StartGame:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.PauseGame:
+                        ChangeScene(stateCommandType);
+                        break;
+                    case StateCommandType.GoToMenu:
+                        ChangeScene(stateCommandType);
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            // Init
-            if (eventMapper.eventName.ToLower() == "init")
-            {
-                Init(eventMapper);
-            }
-
-            // Play
-            if (eventMapper.eventName.ToLower() == "play")
-            {
-                Play(eventMapper);
-            }
-        }
-
-        private void Play(EventMapper eventMapper)
-        {
-            // Disable screen
-            screenPrefab.SetActive(false);
-
-            eventMapper.scriptableEvent?.Trigger();
-        }
-
-        private void Init(EventMapper eventMapper)
-        {
-            if (screenPrefab == null)
-                screenPrefab = GameObject.Instantiate(screenSettings.screenPrefab);
-            else
-                screenPrefab.SetActive(true);
-
-            eventMapper.scriptableEvent?.Trigger();
         }
     }
 }

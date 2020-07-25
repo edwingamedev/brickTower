@@ -8,12 +8,31 @@ namespace EdwinGameDev
     {
         public int gridMinX;
         public int gridMaxX;
-        public int gridMinY;
-        public int gridMaxY;
+        [SerializeField] private int gridMinY;
+        [SerializeField] private int gridMaxY;
+
+        public int currentGridBottom;
+        public int currentGridTop;
+
+        public void ResetGrid()
+        {
+            currentGridBottom = gridMinY;
+            currentGridTop = gridMaxY;
+        }
+
+        public void SetGridBottom(int bottom)
+        {
+            currentGridBottom = bottom;
+        }
+
+        public void SetGridTop(int top)
+        {
+            currentGridTop = top;
+        }
 
         public bool HasFellOffBounds(Vector2 coordToTest)
         {
-            return coordToTest.y < gridMinY;
+            return coordToTest.y < currentGridBottom;
         }
 
         public bool IsInBounds(Vector2 coordToTest)
@@ -30,7 +49,7 @@ namespace EdwinGameDev
 
         public bool CheckIfCollides(Vector2 centerCoord, float distance, Vector2 movementDirection, Piece[] blockPieces)
         {
-            return VerticalCollisions(centerCoord, distance, Mathf.FloorToInt(movementDirection.y), blockPieces) || 
+            return VerticalCollisions(centerCoord, distance, Mathf.FloorToInt(movementDirection.y), blockPieces) ||
                     HorizontalCollisions(centerCoord, distance, Mathf.FloorToInt(movementDirection.x), blockPieces);
         }
 
@@ -48,9 +67,10 @@ namespace EdwinGameDev
                 rayOrigin += Vector2.right * (pieceColliderWidth * i);
 
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * direction, distance);
+
+#if UNITY_EDITOR
                 Debug.DrawRay(rayOrigin, Vector2.up * distance * direction, Color.white);
-
-
+#endif
                 if (hit)
                 {
                     for (int j = 0; j < blockPieces.Length; j++)
@@ -60,10 +80,6 @@ namespace EdwinGameDev
 
                         sameBlockCollision = hit.collider == blockPieces[j].col;
                     }
-
-                    if (!sameBlockCollision)
-                        Debug.Log($"Collided bound Collided {hit.transform.name}: {hit.transform.position}");
-
 
                     return !sameBlockCollision && hit;
                 }
@@ -86,8 +102,10 @@ namespace EdwinGameDev
                 rayOrigin += Vector2.up * (pieceColliderHeight * i);
 
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * direction, distance);
-                Debug.DrawRay(rayOrigin, Vector2.right * distance * direction, Color.white);
 
+#if UNITY_EDITOR
+                Debug.DrawRay(rayOrigin, Vector2.right * distance * direction, Color.white);
+#endif 
 
                 if (hit)
                 {
@@ -98,10 +116,6 @@ namespace EdwinGameDev
 
                         sameBlockCollision = hit.collider == blockPieces[j].col;
                     }
-
-                    if (!sameBlockCollision)
-                        Debug.Log($"Collided bound Collided {hit.transform.name}: {hit.transform.position}");
-
 
                     return !sameBlockCollision && hit;
                 }

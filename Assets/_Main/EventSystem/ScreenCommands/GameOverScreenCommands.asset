@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca7473c77a11f44098d47f5eaef4bca, type: 3}
-  m_Name: GameOverEventMap
+  m_Script: {fileID: 11500000, guid: 1d2ae1c92b84e374299de8b05cbbd441, type: 3}
+  m_Name: GameOverScreenCommands
   m_EditorClassIdentifier: 
-  eventMappers:
-  - eventName: gotomenu
-    scriptableEvent: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}
-  - eventName: play
+  stateCommands:
+  - stateCommandType: 3
     scriptableEvent: {fileID: 11400000, guid: a692de0a4b9049d429820699446a0806, type: 2}
-  - eventName: gameover
+  - stateCommandType: 0
     scriptableEvent: {fileID: 0}
+  - stateCommandType: 5
+    scriptableEvent: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}

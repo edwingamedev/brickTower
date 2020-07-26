@@ -99,6 +99,9 @@ namespace EdwinGameDev
 
         public void RotateBlock()
         {
+            if (paused)
+                return;
+
             if (blocksOfSession.Any())
                 currentPlayingBlock?.Rotate();
         }

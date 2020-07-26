@@ -22,8 +22,9 @@ namespace EdwinGameDev
         private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
         private bool previousSimulated = false;
 
-        private bool fellOff = false;
-        private bool isPlayableBlock = false;
+        [HideInInspector]
+        public bool fellOff = false;
+        private bool isPlayableBlock = true;
 
 
         private void Update()
@@ -36,8 +37,14 @@ namespace EdwinGameDev
 
         public void DisableBlock()
         {
-            isPlayableBlock = true;
+            isPlayableBlock = false;
             DisablePhysics();
+        }
+
+        public void EnableBlock()
+        {
+            isPlayableBlock = true;
+            ResumePhysics();
         }
 
         public void ResumePhysics()

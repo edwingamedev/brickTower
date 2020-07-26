@@ -10,6 +10,7 @@ namespace EdwinGameDev
         public BlockMovement blockMovement;
         public float blockDropRate;
         private List<Block> blocksOfSession = new List<Block>();
+        private List<Block> disabledBlocks = new List<Block>();
         private Block currentPlayingBlock => blocksOfSession.Last();
         private bool paused = true;
         public int towerHeight = 0;
@@ -41,18 +42,33 @@ namespace EdwinGameDev
             this.nextBlock = nextBlock;
         }
 
-        public void RemoveLastBlock()
+        public void DisableBlock(Block block)
         {
-            Block b = blocksOfSession[blocksOfSession.Count - 2];
+            block.DisableBlock();
 
-            RemoveBlock(b);
+            blocksOfSession.Remove(block);
+            disabledBlocks.Add(block);
         }
 
-        public void RemoveBlock(Block b)
+        public void RemoveFallenBlocks()
+        {
+            List<Block> fallenBlocks = blocksOfSession.Where(b => b.fellOff).ToList();
+
+            foreach (Block fallenBlock in fallenBlocks)
+            {
+                RemoveBlock(fallenBlock, blocksOfSession);
+            }
+
+            //Block b = blocksOfSession[blocksOfSession.Count - 2];
+
+            //RemoveBlock(b, blocksOfSession);
+        }
+
+        public void RemoveBlock(Block b, List<Block> listOfBlocks)
         {
             if (b)
             {
-                blocksOfSession.Remove(b);
+                listOfBlocks.Remove(b);
 
                 if (b.gameObject)
                     Destroy(b.gameObject);
@@ -63,7 +79,12 @@ namespace EdwinGameDev
         {
             for (int i = blocksOfSession.Count - 1; i >= 0; i--)
             {
-                RemoveBlock(blocksOfSession[i]);
+                RemoveBlock(blocksOfSession[i], blocksOfSession);
+            }
+
+            for (int i = disabledBlocks.Count - 1; i >= 0; i--)
+            {
+                RemoveBlock(blocksOfSession[i], disabledBlocks);
             }
 
             blocksOfSession.Clear();

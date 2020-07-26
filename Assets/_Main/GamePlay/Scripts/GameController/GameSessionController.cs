@@ -94,6 +94,7 @@ namespace EdwinGameDev
 
         public void GameOver()
         {
+            Execute(StateCommandType.ChangeScene);
             ChangeGameState(GameStateType.GameOver);
             Execute(StateCommandType.OpenScene);
 

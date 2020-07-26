@@ -16,6 +16,6 @@ MonoBehaviour:
     horizontal: 0.5
     vertical: 0.5
   blockDropRate: 0.1
-  blocksOfSession: []
   towerHeight: 0
-  nextBlock: 4
+  nextBlock: 1
+  heightBlock: {fileID: 0}

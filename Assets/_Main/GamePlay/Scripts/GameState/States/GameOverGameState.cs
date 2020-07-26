@@ -13,17 +13,11 @@
             {
                 switch (stateCommandType)
                 {
-                    case StateCommandType.ResumeScene:
-                        break;
                     case StateCommandType.OpenScene:
                         StartScene(stateCommandType);
                         break;
-                    case StateCommandType.ChangeScene:
-                        break;
                     case StateCommandType.StartGame:
                         ChangeScene(stateCommandType);
-                        break;
-                    case StateCommandType.PauseGame:
                         break;
                     case StateCommandType.GoToMenu:
                         ChangeScene(stateCommandType);

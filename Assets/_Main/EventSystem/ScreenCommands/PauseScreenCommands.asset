@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: PauseScreenCommands
   m_EditorClassIdentifier: 
   stateCommands:
-  - stateCommandType: 1
-    scriptableEvent: {fileID: 11400000, guid: 23eee997888e8fc4cb24ba2ad9660c48, type: 2}
-  - stateCommandType: 2
-    scriptableEvent: {fileID: 0}
-  - stateCommandType: 5
-    scriptableEvent: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}
   - stateCommandType: 0
     scriptableEvent: {fileID: 0}
-  - stateCommandType: 4
-    scriptableEvent: {fileID: 0}
-  - stateCommandType: 3
-    scriptableEvent: {fileID: 0}
+  - stateCommandType: 1
+    scriptableEvent: {fileID: 11400000, guid: 23eee997888e8fc4cb24ba2ad9660c48, type: 2}
+  - stateCommandType: 5
+    scriptableEvent: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}

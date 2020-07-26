@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 9048330673993960762}
   - component: {fileID: 9048330673993960765}
   - component: {fileID: 9048330673993960764}
-  - component: {fileID: 1941105008016190194}
   - component: {fileID: 3803612440922806493}
   m_Layer: 5
   m_Name: Button
@@ -638,21 +637,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.24313727, g: 0.20784315, b: 0.27450982, a: 1}
   m_EffectDistance: {x: 4, y: 4}
   m_UseGraphicAlpha: 1
---- !u!114 &1941105008016190194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048330673993960766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b392478de4caf8f46856c453fc0782a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventMap: {fileID: 11400000, guid: 2d408282bc8aa88448f88151cba5106b, type: 2}
-  eventName: Play
-  action: {fileID: 11400000, guid: dacae64c16fa662498732828a6dc690c, type: 2}
 --- !u!114 &3803612440922806493
 MonoBehaviour:
   m_ObjectHideFlags: 0

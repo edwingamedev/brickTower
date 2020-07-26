@@ -17,22 +17,10 @@ namespace EdwinGameDev
             {
                 switch (stateCommandType)
                 {
-                    case StateCommandType.ResumeScene:
-                        Resume(stateCommandType);
-                        break;
                     case StateCommandType.OpenScene:
                         StartScene(stateCommandType);
                         break;
-                    case StateCommandType.ChangeScene:
-                        ChangeScene(stateCommandType);
-                        break;
                     case StateCommandType.StartGame:
-                        ChangeScene(stateCommandType);
-                        break;
-                    case StateCommandType.PauseGame:
-                        ChangeScene(stateCommandType);
-                        break;
-                    case StateCommandType.GoToMenu:
                         ChangeScene(stateCommandType);
                         break;
                     default:

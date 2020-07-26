@@ -4,10 +4,9 @@ using System.Linq;
 
 namespace EdwinGameDev
 {
-    public class GameSessionController : MonoBehaviour
+    public class GameSessionStateMachine : MonoBehaviour
     {
         private GameStateType currentGameStatus = GameStateType.Intro;
-        private GameStateType previousGameStatus = GameStateType.Intro;
 
         private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
         public GameScreens gameScreens;
@@ -104,7 +103,6 @@ namespace EdwinGameDev
 
         public void ChangeGameState(GameStateType gameState)
         {
-            previousGameStatus = currentGameStatus;
             currentGameStatus = gameState;
         }
 

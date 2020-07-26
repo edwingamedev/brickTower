@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: PlayingScreenCommands
   m_EditorClassIdentifier: 
   stateCommands:
-  - stateCommandType: 1
-    scriptableEvent: {fileID: 0}
   - stateCommandType: 0
     scriptableEvent: {fileID: 11400000, guid: ab9ac65b95b74b54d89124ffb759cdf3, type: 2}
   - stateCommandType: 4
     scriptableEvent: {fileID: 11400000, guid: 8c91e9568621e9e46b36c08d59e057ef, type: 2}
+  - stateCommandType: 1
+    scriptableEvent: {fileID: 0}
   - stateCommandType: 2
     scriptableEvent: {fileID: 0}
-  - stateCommandType: 3
-    scriptableEvent: {fileID: 0}
-  - stateCommandType: 5
-    scriptableEvent: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}

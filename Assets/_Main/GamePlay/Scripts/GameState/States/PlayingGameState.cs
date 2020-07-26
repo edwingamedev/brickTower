@@ -26,13 +26,7 @@ namespace EdwinGameDev
                     case StateCommandType.ChangeScene:
                         ChangeScene(stateCommandType);
                         break;
-                    case StateCommandType.StartGame:
-                        StartScene(stateCommandType);
-                        break;
                     case StateCommandType.PauseGame:
-                        ChangeScene(stateCommandType);
-                        break;
-                    case StateCommandType.GoToMenu:
                         ChangeScene(stateCommandType);
                         break;
                     default:

@@ -52,7 +52,7 @@ namespace EdwinGameDev
 
         public void BlockFellOff()
         {
-            gameContainer?.RemoveLastBlock();
+            gameContainer?.RemoveFallenBlocks();
         }
 
         public void BlockMoveLeft()

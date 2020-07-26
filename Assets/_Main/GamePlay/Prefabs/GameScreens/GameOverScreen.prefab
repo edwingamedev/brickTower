@@ -194,7 +194,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 22.85
+  m_fontSize: 22.8
   m_fontSizeBase: 32.41
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15810563, y: 0.8186205}
   m_AnchorMax: {x: 0.84444726, y: 0.9234245}
-  m_AnchoredPosition: {x: -0.50001526, y: 1.3905029}
+  m_AnchoredPosition: {x: -0.5, y: 1.3905029}
   m_SizeDelta: {x: -3.5284271, y: -1.2189331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5523053523208922775
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 57.95
+  m_fontSize: 53.15
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -451,10 +451,10 @@ RectTransform:
   m_Father: {fileID: 5523053522539582686}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.03, y: -340.6}
-  m_SizeDelta: {x: 143.13327, y: 114.01239}
+  m_AnchorMin: {x: 0.28524017, y: 0.43116927}
+  m_AnchorMax: {x: 0.7174053, y: 0.5914339}
+  m_AnchoredPosition: {x: -0.32000732, y: 0.3999939}
+  m_SizeDelta: {x: 0.13327026, y: 2.0123901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5523053524218775699
 CanvasRenderer:
@@ -613,10 +613,10 @@ RectTransform:
   m_Father: {fileID: 5523053522539582686}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.03, y: -479.7}
-  m_SizeDelta: {x: 143.13327, y: 114.01239}
+  m_AnchorMin: {x: 0.28524017, y: 0.2287354}
+  m_AnchorMax: {x: 0.7174053, y: 0.38958767}
+  m_AnchoredPosition: {x: -0.32000732, y: -1}
+  m_SizeDelta: {x: 0.13327026, y: 2.0123901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7272949655281584554
 CanvasRenderer:
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 31.95
+  m_fontSize: 32
   m_fontSizeBase: 32.41
   m_fontWeight: 400
   m_enableAutoSizing: 1

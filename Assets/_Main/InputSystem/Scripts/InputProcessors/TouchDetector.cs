@@ -12,7 +12,7 @@ namespace EdwinGameDev
         private InputType movedInput = InputType.NoInput;
 
         private float touchBegan = 0;
-        private float releaseDelay = 0.25f;
+        private float releaseDelay = 0.5f;
 
         public TouchDetector()
         {

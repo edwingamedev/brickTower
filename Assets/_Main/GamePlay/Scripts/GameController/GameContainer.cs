@@ -7,6 +7,8 @@ namespace EdwinGameDev
     [CreateAssetMenu(menuName = "Edwin Game Dev/GameContainer")]
     public class GameContainer : ScriptableObject
     {
+        public int numOfLives;
+        public int heightToWin;
         public BlockMovement blockMovement;
         public float blockDropRate;
         private List<Block> blocksOfSession = new List<Block>();
@@ -15,7 +17,7 @@ namespace EdwinGameDev
         private bool paused = true;
         public int towerHeight = 0;
         public BlockType nextBlock;
-        public Transform heightBlock;
+        private Transform heightBlock;
 
         public void SetPause(bool paused)
         {
@@ -58,10 +60,6 @@ namespace EdwinGameDev
             {
                 RemoveBlock(fallenBlock, blocksOfSession);
             }
-
-            //Block b = blocksOfSession[blocksOfSession.Count - 2];
-
-            //RemoveBlock(b, blocksOfSession);
         }
 
         public void RemoveBlock(Block b, List<Block> listOfBlocks)
@@ -150,9 +148,14 @@ namespace EdwinGameDev
                     Block block = blocksOfSession.FirstOrDefault(x => x.GetHighestPiecePosition().transform.position.y > heightBlock.position.y);
 
                     if (block)
+                    {
                         heightBlock = block.higherPiece.transform;
+                    }
+
                 }
             }
+
+            towerHeight = Mathf.CeilToInt(heightBlock.position.y) -5;
 
             return heightBlock;
         }

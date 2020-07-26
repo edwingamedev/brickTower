@@ -6,15 +6,20 @@ namespace EdwinGameDev
 {
     public class GameScore : MonoBehaviour
     {
-        public int lives;
+        public GameContainer gameContainer;
+        public ScriptableEvent noMoveLivesEvent;
+        public IntScriptableEvent getCurrentLives;
+
         private int currentLives;
 
-        public ScriptableEvent noMoveLives;
-        public StringScriptableEvent onLivesChanged;
+        public void GetCurrentLives()
+        {
+            getCurrentLives.Trigger(currentLives);
+        }
 
         public void ResetLives()
         {
-            for (int i = currentLives; i < lives; i++)
+            for (int i = currentLives; i < gameContainer.numOfLives; i++)
             {
                 AddLife();
             }
@@ -23,14 +28,11 @@ namespace EdwinGameDev
         public void AddLife()
         {
             currentLives++;
-
-            onLivesChanged?.Trigger(currentLives.ToString());
         }
 
         public void RemoveLife()
         {
             currentLives--;
-            onLivesChanged?.Trigger(currentLives.ToString());
 
             if (currentLives <= 0)
                 NoMoreLives();            
@@ -38,7 +40,7 @@ namespace EdwinGameDev
 
         public void NoMoreLives()
         {
-            noMoveLives.Trigger();
+            noMoveLivesEvent.Trigger();
         }
 
     }

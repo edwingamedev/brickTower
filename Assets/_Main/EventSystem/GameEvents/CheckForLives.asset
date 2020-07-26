@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c416e709312d94cbb9a3c9202679e9, type: 3}
-  m_Name: RedoLastPlay
+  m_Name: CheckForLives
   m_EditorClassIdentifier: 

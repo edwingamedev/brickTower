@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 185177119}
   - component: {fileID: 185177118}
   - component: {fileID: 185177117}
+  - component: {fileID: 185177121}
   m_Layer: 0
   m_Name: GameScore
   m_TagString: Untagged
@@ -416,9 +417,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742e0574784adee43955a59c78482e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
-  noMoveLives: {fileID: 11400000, guid: 75dfa658d3a15d54888b3a313f8ed589, type: 2}
-  onLivesChanged: {fileID: 11400000, guid: 236f0ca2103c0b34497b03d5c4b52510, type: 2}
+  gameContainer: {fileID: 11400000, guid: 3a75de9eee4f06544aa24f252f7ded94, type: 2}
+  noMoveLivesEvent: {fileID: 11400000, guid: 75dfa658d3a15d54888b3a313f8ed589, type: 2}
+  getCurrentLives: {fileID: 11400000, guid: 0e864ebfa1c4284469e0218182ed1eb2, type: 2}
+--- !u!114 &185177121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185177115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb75008f007bba4eb5235c51c46825f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 11400000, guid: 2673f1c764b2db74eb885f062700b8f0, type: 2}
+  Action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 185177120}
+        m_MethodName: GetCurrentLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &267130265
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890a44dd475ba6849b6e16e8e1379c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMap: {fileID: 11400000, guid: 444d671d40865b242bdc93b2d4e39678, type: 2}
+  inputMap: {fileID: 11400000, guid: f2ad8ba62f4277849b2e90d913ba50e7, type: 2}
 --- !u!1 &949095736
 GameObject:
   m_ObjectHideFlags: 0

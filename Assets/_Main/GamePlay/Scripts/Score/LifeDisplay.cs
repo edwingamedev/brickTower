@@ -6,33 +6,45 @@ using UnityEngine.UI;
 
 public class LifeDisplay : MonoBehaviour
 {
-    public Image[] life;
-    public StringScriptableEvent scriptableEvent;
+    public GameObject lifePrefab;
+    public Transform lifeContainer;
+    private Queue<GameObject> lives = new Queue<GameObject>();
+    public ScriptableEvent requestNumOfLives;
+    public IntScriptableEvent receiveNumOfLives;
 
-    private void Start()
+    private void OnEnable()
     {
-        scriptableEvent.OnTriggered += DisplayLives;
+        // Assign callback
+        receiveNumOfLives.OnTriggered += CheckNumOfLives;
+
+        // Request the current lives
+        requestNumOfLives.Trigger();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        scriptableEvent.OnTriggered -= DisplayLives;
+        // Assign callback
+        receiveNumOfLives.OnTriggered -= CheckNumOfLives;
     }
 
-    public void DisplayLives(string lives)
+    public void CheckNumOfLives(int numOfLives)
     {
-        int numOfLives = int.Parse(lives);
+        int livesToAdd = numOfLives - lives.Count;
 
-        for (int i = 0; i < life.Length; i++)
+        for (int i = 0; i < livesToAdd; i++)
         {
-            life[i].enabled = false;
+            AddLife();
         }
+    }
 
-        for (int i = 0; i < numOfLives; i++)
-        {
-            life[i
-                
-                ].enabled = true;
-        }
+    public void AddLife()
+    {
+        lives.Enqueue(Instantiate(lifePrefab, lifeContainer));
+    }
+
+    public void RemoveLife()
+    {
+        if (lives.Count > 0)
+            Destroy(lives.Dequeue());
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace EdwinGameDev
 {
@@ -44,9 +45,23 @@ namespace EdwinGameDev
             this.nextBlock = nextBlock;
         }
 
+        public void DisableBlockBelow(int disablePosition)
+        {
+            //Debug.Log("disabling blocks below: " + disablePosition);
+
+            for (int i = blocksOfSession.Count - 1; i >= 0; i--)
+            {
+                if (blocksOfSession[i].placed && blocksOfSession[i].GetHighestPiecePosition().transform.position.y < disablePosition)
+                {
+                    DisableBlock(blocksOfSession[i]);
+                }
+            }
+        }
+
         public void DisableBlock(Block block)
         {
-            block.DisableBlock();
+            if (!block.DisableBlock())
+                return;
 
             blocksOfSession.Remove(block);
             disabledBlocks.Add(block);
@@ -75,14 +90,20 @@ namespace EdwinGameDev
 
         public void ResetGame()
         {
-            for (int i = blocksOfSession.Count - 1; i >= 0; i--)
+            if (blocksOfSession.Any())
             {
-                RemoveBlock(blocksOfSession[i], blocksOfSession);
+                for (int i = blocksOfSession.Count - 1; i >= 0; i--)
+                {
+                    RemoveBlock(blocksOfSession[i], blocksOfSession);
+                }
             }
 
-            for (int i = disabledBlocks.Count - 1; i >= 0; i--)
+            if (disabledBlocks.Any())
             {
-                RemoveBlock(blocksOfSession[i], disabledBlocks);
+                for (int i = disabledBlocks.Count - 1; i >= 0; i--)
+                {
+                    RemoveBlock(disabledBlocks[i], disabledBlocks);
+                }
             }
 
             blocksOfSession.Clear();
@@ -137,14 +158,6 @@ namespace EdwinGameDev
             }
             else
             {
-                //Transform lastPlaceBlock = blocksOfSession.LastOrDefault(b => b.placed).GetHighestPiecePosition().transform;
-
-                //if (lastPlaceBlock.position.y > highestBlock.position.y)
-                //{
-                //    highestBlock = lastPlaceBlock;
-                //}
-                //else
-                //{
                 float higherPos = 0;
                 Transform higherBlock = null;
 
@@ -161,7 +174,6 @@ namespace EdwinGameDev
                 {
                     highestBlock = higherBlock;
                 }
-                //}
             }
 
             towerHeight = Mathf.CeilToInt(highestBlock.position.y) - 5;

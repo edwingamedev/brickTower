@@ -137,22 +137,31 @@ namespace EdwinGameDev
             }
             else
             {
-                Transform lastPlaceBlock = blocksOfSession.LastOrDefault(b => b.placed).GetHighestPiecePosition().transform;
+                //Transform lastPlaceBlock = blocksOfSession.LastOrDefault(b => b.placed).GetHighestPiecePosition().transform;
 
-                if (lastPlaceBlock.position.y > highestBlock.position.y)
-                {
-                    highestBlock = lastPlaceBlock;
-                }
-                else
-                {
-                    Block block = blocksOfSession.FirstOrDefault(x => x.placed && x.GetHighestPiecePosition().transform.position.y > highestBlock.position.y);
+                //if (lastPlaceBlock.position.y > highestBlock.position.y)
+                //{
+                //    highestBlock = lastPlaceBlock;
+                //}
+                //else
+                //{
+                float higherPos = 0;
+                Transform higherBlock = null;
 
-                    if (block)
+                for (int i = 0; i < blocksOfSession.Count; i++)
+                {
+                    if (blocksOfSession[i].placed && blocksOfSession[i].GetHighestPiecePosition().transform.position.y > higherPos)
                     {
-                        highestBlock = block.higherPiece.transform;
+                        higherBlock = blocksOfSession[i].GetHighestPiecePosition().transform;
+                        higherPos = higherBlock.position.y;
                     }
-
                 }
+
+                if (higherBlock)
+                {
+                    highestBlock = higherBlock;
+                }
+                //}
             }
 
             towerHeight = Mathf.CeilToInt(highestBlock.position.y) - 5;

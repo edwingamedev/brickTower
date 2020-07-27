@@ -11,7 +11,7 @@ namespace EdwinGameDev
 
         public bool Down()
         {
-            return Input.GetButtonUp("Vertical") && Input.GetAxis("Vertical") < 0;
+            return Input.GetButton("Vertical") && Input.GetAxis("Vertical") < 0;
         }
 
         public bool Left()

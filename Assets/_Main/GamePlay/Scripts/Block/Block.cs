@@ -102,11 +102,11 @@ namespace EdwinGameDev
                         return false;
 
                     case MovementRestriction.CannotMove:
-                        Debug.Log("Cant Go there!");
+                        //Debug.Log("Cant Go there!");
 
                         if (movement.y < 0)
                         {
-                            Debug.Log("Placed!");
+                            //Debug.Log("Placed!");
                             PlaceBlock();
                         }
                         return false;
@@ -230,15 +230,6 @@ namespace EdwinGameDev
         /// </summary>
         private void PlaceBlock()
         {
-            for (int i = 0; i < pieces.Length; i++)
-            {
-                if (!pieces[i].PlacePiece())
-                {
-                    Debug.Log("GAME OVER!");
-                    return;
-                }
-            }
-
             EnablePhysics();
 
             onBlockSet.Trigger();

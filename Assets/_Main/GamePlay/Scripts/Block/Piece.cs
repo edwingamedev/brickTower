@@ -49,20 +49,6 @@ namespace EdwinGameDev
         }
 
         /// <summary>
-        /// Sets the tile in it's current position
-        /// </summary>
-        public bool PlacePiece()
-        {
-            if (transform.position.y >= gameGrid.currentGridTop)
-            {
-                return false;
-            }
-
-            return true;
-            //gameGrid.OccupyPos(pieceCoordinates, gameObject);
-        }
-
-        /// <summary>
         /// Moves the tile by the specified amount
         /// </summary>
         public void MoveTile(Vector2 movement)

@@ -18,6 +18,10 @@ namespace EdwinGameDev
         private Vector3 startingTargetPos;
         private Vector3 startingCameraPos;
 
+        private int verticalThreshold = 5;
+        [SerializeField]
+        private int previousHigherPosition = 0;
+
 
         private void Awake()
         {
@@ -40,14 +44,37 @@ namespace EdwinGameDev
         {
             target.position = startingTargetPos;
             transform.position = startingCameraPos;
+            previousHigherPosition = 0;
         }
 
         public void CheckTowerHeight()
         {
-            Transform newPos = gameContainer.GetHighestBlock();
+            int highestPosition = gameContainer.GetHighestBlock();
+            CalculateNewCameraPosition(highestPosition);
+        }
 
-            if (newPos)
-                target.position = new Vector3(startingTargetPos.x, startingTargetPos.y + Mathf.CeilToInt(newPos.position.y) - startingTargetPos.y);
+        private void CalculateNewCameraPosition(int highestPosition)
+        {
+            if (highestPosition > previousHigherPosition + verticalThreshold)
+            {
+                int diff = highestPosition / verticalThreshold;
+                float newPosition = startingTargetPos.y + (diff * verticalThreshold);
+
+                target.position = new Vector3(startingTargetPos.x, newPosition);
+
+                // Update highest position
+                previousHigherPosition = diff * verticalThreshold;
+            }
+            else if (highestPosition <= previousHigherPosition)
+            {
+                int diff = highestPosition / verticalThreshold;
+                float newPosition = (diff * verticalThreshold) - startingTargetPos.y;
+
+                target.position = new Vector3(startingTargetPos.x, newPosition);
+
+                // Update highest position
+                previousHigherPosition = diff * verticalThreshold;
+            }
         }
 
         void Update()

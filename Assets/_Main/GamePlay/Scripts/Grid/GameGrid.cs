@@ -1,4 +1,6 @@
-﻿using System.Runtime.Remoting.Messaging;
+﻿using System.Collections;
+using System.Runtime.Remoting.Messaging;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace EdwinGameDev
@@ -8,8 +10,9 @@ namespace EdwinGameDev
     {
         public int gridMinX;
         public int gridMaxX;
-        [SerializeField] private int gridMinY;
-        [SerializeField] private int gridMaxY;
+
+        private int gridMinY = 0;
+        private int gridMaxY = 40;
 
         public int currentGridBottom;
         public int currentGridTop;
@@ -25,14 +28,28 @@ namespace EdwinGameDev
             currentGridBottom = bottom;
         }
 
-        public void SetGridTop(int top)
+        /// <summary>
+        /// Sets the start grid Y max position
+        /// </summary>
+        /// <param name="top"></param>
+        public void SetStartGridTop(int top)
+        {
+            gridMaxY = top;
+            SetCurrentGridTop(top);
+        }
+
+        /// <summary>
+        /// Sets current grid Y max position
+        /// </summary>
+        /// <param name="top"></param>
+        public void SetCurrentGridTop(int top)
         {
             currentGridTop = top;
         }
 
         public bool HasFellOffBounds(Vector2 coordToTest)
         {
-            return coordToTest.y < currentGridBottom;
+            return coordToTest.y < currentGridBottom || coordToTest.x < gridMinX - 1 || coordToTest.x >= gridMaxX + 1;
         }
 
         public bool IsInBounds(Vector2 coordToTest)

@@ -9,6 +9,8 @@ namespace EdwinGameDev
         public GameContainer gameContainer;
         public Transform spawnPoint;
         public Transform target;
+        public GameGrid gameGrid;
+
         public float smoothTime = 1F;
         public Vector3 cameraOffSet = new Vector3(5, 6.5f, -10);
         public float cameraSize;
@@ -19,7 +21,6 @@ namespace EdwinGameDev
         private Vector3 startingCameraPos;
 
         private int verticalThreshold = 5;
-        [SerializeField]
         private int previousHigherPosition = 0;
 
 
@@ -36,6 +37,9 @@ namespace EdwinGameDev
             transform.position = target.TransformPoint(new Vector3(cameraOffSet.x, camera.orthographicSize - cameraOffSet.y, cameraOffSet.z));
             startingCameraPos = transform.position;
 
+            // Sets grid top
+            gameGrid.SetStartGridTop(Mathf.RoundToInt(camera.orthographicSize + transform.position.y));
+
             // SPAWN
             spawnPoint.position = new Vector3(spawnPoint.position.x, camera.orthographicSize + transform.position.y - 1.5f);
         }
@@ -45,11 +49,14 @@ namespace EdwinGameDev
             target.position = startingTargetPos;
             transform.position = startingCameraPos;
             previousHigherPosition = 0;
+
+            gameGrid.ResetGrid();
         }
 
         public void CheckTowerHeight()
         {
             int highestPosition = gameContainer.GetHighestBlock();
+
             CalculateNewCameraPosition(highestPosition);
         }
 
@@ -64,6 +71,8 @@ namespace EdwinGameDev
 
                 // Update highest position
                 previousHigherPosition = diff * verticalThreshold;
+                gameContainer.DisableBlockBelow(previousHigherPosition - verticalThreshold);
+                //gameGrid.SetGridBottom(previousHigherPosition - 2);
             }
             else if (highestPosition <= previousHigherPosition)
             {
@@ -72,9 +81,17 @@ namespace EdwinGameDev
 
                 target.position = new Vector3(startingTargetPos.x, newPosition);
 
+                //gameGrid.SetGridBottom(previousHigherPosition - 2);
+
                 // Update highest position
                 previousHigherPosition = diff * verticalThreshold;
             }
+
+            // Sets grid top
+            gameGrid.SetStartGridTop(Mathf.RoundToInt(spawnPoint.position.y + 1.5f));
+
+            // min
+            //camera.orthographicSize + transform.position.y - 1.5f
         }
 
         void Update()

@@ -35,10 +35,25 @@ namespace EdwinGameDev
             }
         }
 
-        public void DisableBlock()
+        public bool DisableBlock()
         {
+            if (rb.velocity.magnitude > 2)
+            {
+                //Debug.Log("vel " + rb.velocity.magnitude);
+                return false;
+            }
+
             isPlayableBlock = false;
-            DisablePhysics();
+
+            previousSimulated = rb.simulated;
+            previousBodyType = rb.bodyType;
+
+            rb.simulated = true;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+
+            return true;
         }
 
         public void EnableBlock()
@@ -69,6 +84,8 @@ namespace EdwinGameDev
 
             rb.simulated = false;
             rb.bodyType = RigidbodyType2D.Kinematic;
+            //rb.velocity = Vector3.zero;
+            //rb.angularVelocity = 0;
         }
 
         public Piece GetHighestPiecePosition()

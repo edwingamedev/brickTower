@@ -5,6 +5,7 @@
         Intro,
         Playing,
         Paused,
-        GameOver
+        GameOver,
+        Win
     }
 }

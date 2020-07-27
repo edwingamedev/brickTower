@@ -29,3 +29,7 @@ MonoBehaviour:
     screenPrefab: {fileID: 5523053522539582674, guid: 943648d3b6b794948b700d8a81534ef8,
       type: 3}
     screenCommands: {fileID: 11400000, guid: 6884890dada49934f98b18a392a05016, type: 2}
+  - gameStateType: 4
+    screenPrefab: {fileID: 552233409539774159, guid: 96fc8b3ddd621054bbe7135daa0c9eca,
+      type: 3}
+    screenCommands: {fileID: 11400000, guid: 1216373372aa8a441bc76fe6eca4e4b7, type: 2}

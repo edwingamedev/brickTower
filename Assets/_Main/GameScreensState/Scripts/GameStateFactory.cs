@@ -30,6 +30,9 @@ namespace EdwinGameDev
                 case GameStateType.GameOver:
                     gameState = new GameOverGameState(screenSettings);
                     break;
+                case GameStateType.Win:
+                    gameState = new WinGameState(screenSettings);
+                    break;
                 default:
                     break;
             }

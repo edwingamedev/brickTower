@@ -303,6 +303,8 @@ GameObject:
   - component: {fileID: 185177118}
   - component: {fileID: 185177117}
   - component: {fileID: 185177121}
+  - component: {fileID: 185177122}
+  - component: {fileID: 185177123}
   m_Layer: 0
   m_Name: GameScore
   m_TagString: Untagged
@@ -342,6 +344,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 185177120}
         m_MethodName: ResetLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 185177120}
+        m_MethodName: ResetScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -405,6 +418,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 185177120}
+        m_MethodName: DecreaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &185177120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,8 +442,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameContainer: {fileID: 11400000, guid: 3a75de9eee4f06544aa24f252f7ded94, type: 2}
-  noMoveLivesEvent: {fileID: 11400000, guid: 75dfa658d3a15d54888b3a313f8ed589, type: 2}
+  noMoreLivesEvent: {fileID: 11400000, guid: 75dfa658d3a15d54888b3a313f8ed589, type: 2}
+  gameWonEvent: {fileID: 11400000, guid: 2d2d75c090c6ae7428debf2bd03cd18b, type: 2}
   getCurrentLives: {fileID: 11400000, guid: 0e864ebfa1c4284469e0218182ed1eb2, type: 2}
+  getCurrentScore: {fileID: 11400000, guid: 6b4accabb818e264bb22e8cdd4d083e5, type: 2}
 --- !u!114 &185177121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,7 +463,72 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 185177120}
-        m_MethodName: GetCurrentLives
+        m_MethodName: SendCurrentLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &185177122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185177115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb75008f007bba4eb5235c51c46825f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 11400000, guid: fd6f02bf3c861204ca73fe392c6a9ced, type: 2}
+  Action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 185177120}
+        m_MethodName: IncreaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 185177120}
+        m_MethodName: CheckWinCondition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &185177123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185177115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb75008f007bba4eb5235c51c46825f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 11400000, guid: 29cd464c9a372394c8b83b4d1f5469c0, type: 2}
+  Action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 185177120}
+        m_MethodName: SendCurrentScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -815,6 +906,7 @@ MonoBehaviour:
   OnGameOver: {fileID: 11400000, guid: 75dfa658d3a15d54888b3a313f8ed589, type: 2}
   OnResumeGame: {fileID: 11400000, guid: 23eee997888e8fc4cb24ba2ad9660c48, type: 2}
   OnGoToMenu: {fileID: 11400000, guid: 65d7f0ee0764d7d4c97f93ea5049fd13, type: 2}
+  OnWinGame: {fileID: 11400000, guid: 2d2d75c090c6ae7428debf2bd03cd18b, type: 2}
 --- !u!4 &949095738
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d37a367fa328ee40bf44949fc722a4d, type: 3}
-  m_Name: GetNumOfLives
+  m_Script: {fileID: 11500000, guid: 48c416e709312d94cbb9a3c9202679e9, type: 3}
+  m_Name: RequestNumOfLives
   m_EditorClassIdentifier: 

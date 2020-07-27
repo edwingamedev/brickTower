@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace EdwinGameDev
 {
@@ -18,6 +19,7 @@ namespace EdwinGameDev
         public ScriptableEvent OnGameOver;
         public ScriptableEvent OnResumeGame;
         public ScriptableEvent OnGoToMenu;
+        public ScriptableEvent OnWinGame;
 
         private void Start()
         {
@@ -28,6 +30,7 @@ namespace EdwinGameDev
             OnGameOver.OnTriggered += GameOver;
             OnResumeGame.OnTriggered += ResumeGame;
             OnGoToMenu.OnTriggered += GameIntro;
+            OnWinGame.OnTriggered += WinGame;
 
             Init();
         }
@@ -91,6 +94,16 @@ namespace EdwinGameDev
             gameContainer.SetPause(true);
         }
 
+        private void WinGame()
+        {
+            Execute(StateCommandType.ChangeScene);
+            ChangeGameState(GameStateType.Win);
+            Execute(StateCommandType.OpenScene);
+
+            // Pause
+            gameContainer.SetPause(true);
+        }
+
         public void GameOver()
         {
             Execute(StateCommandType.ChangeScene);
@@ -114,6 +127,7 @@ namespace EdwinGameDev
             OnGameOver.OnTriggered -= GameOver;
             OnResumeGame.OnTriggered -= ResumeGame;
             OnGoToMenu.OnTriggered -= GameIntro;
+            OnWinGame.OnTriggered -= WinGame;
         }
 
     }

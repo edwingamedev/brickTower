@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System;
 
 namespace EdwinGameDev
-{
-    [CreateAssetMenu(menuName = "Edwin Game Dev/GameContainer")]
-    public class GameContainer : ScriptableObject
+{    
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Data/Game Data")]
+    public class GameData : ScriptableObject
     {
         public int numOfLives;
         public int heightToWin;
@@ -17,8 +17,9 @@ namespace EdwinGameDev
         private Block currentPlayingBlock => blocksOfSession.Last();
         private bool paused = true;
         public int towerHeight = 0;
+        [HideInInspector]
         public BlockType nextBlock;
-        private Transform highestBlock;
+        private Transform highestBlock;        
 
         public void SetPause(bool paused)
         {

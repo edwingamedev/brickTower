@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f4dcc87911690647bde54c8c72ff5e2, type: 3}
-  m_Name: Game Container
+  m_Name: Game Data
   m_EditorClassIdentifier: 
   numOfLives: 5
-  heightToWin: 40
+  heightToWin: 5
   blockMovement:
-    horizontal: 0.5
+    horizontal: 2
     vertical: 0.5
-  blockDropRate: 0.2
+  blockDropRate: 1
   towerHeight: 2
-  nextBlock: 2
+  nextBlock: 5

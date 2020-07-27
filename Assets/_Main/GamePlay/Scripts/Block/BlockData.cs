@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/GameSettings")]
-    public class GameSettings : ScriptableObject
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Data/BlockData")]
+    public class BlockData : ScriptableObject
     {
         private BlockStructure blockStructure = new BlockStructure();
         public GameObject piecePrefab;

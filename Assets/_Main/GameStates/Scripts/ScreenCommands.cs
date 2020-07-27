@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/ScreenCommands")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/States/ScreenCommands")]
     public class ScreenCommands : ScriptableObject
     {
         public List<StateCommand> stateCommands;

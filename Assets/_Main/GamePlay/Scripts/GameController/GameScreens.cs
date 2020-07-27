@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/GameScreens")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/States/GameScreens")]
     public class GameScreens : ScriptableObject
     {        
         public List<GameScreenSettings> screens = new List<GameScreenSettings>();        

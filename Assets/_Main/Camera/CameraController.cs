@@ -6,7 +6,7 @@ namespace EdwinGameDev
 {
     public class CameraController : MonoBehaviour
     {
-        public GameContainer gameContainer;
+        public GameData gameData;
         public Transform spawnPoint;
         public Transform target;
         public GameGrid gameGrid;
@@ -55,7 +55,7 @@ namespace EdwinGameDev
 
         public void CheckTowerHeight()
         {
-            int highestPosition = gameContainer.GetHighestBlock();
+            int highestPosition = gameData.GetHighestBlock();
 
             CalculateNewCameraPosition(highestPosition);
         }
@@ -71,7 +71,7 @@ namespace EdwinGameDev
 
                 // Update highest position
                 previousHigherPosition = diff * verticalThreshold;
-                gameContainer.DisableBlockBelow(previousHigherPosition - verticalThreshold);
+                gameData.DisableBlockBelow(previousHigherPosition - verticalThreshold);
                 //gameGrid.SetGridBottom(previousHigherPosition - 2);
             }
             else if (highestPosition <= previousHigherPosition)

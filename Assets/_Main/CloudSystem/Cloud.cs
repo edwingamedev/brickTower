@@ -7,7 +7,7 @@ namespace EdwinGameDev
     public class Cloud : MonoBehaviour
     {
         private float currentMoveTick;
-        public GameContainer gameContainer;
+        public GameData gameData;
         public GameGrid gameGrid;
         public Vector2 direction;
         public SpriteRenderer spriteRenderer;

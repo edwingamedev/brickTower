@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/Int ScriptableEvent")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Events/Int ScriptableEvent")]
     public class IntScriptableEvent : ScriptableObject
     {
         public event Action<int> OnTriggered;

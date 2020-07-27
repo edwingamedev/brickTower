@@ -2708,6 +2708,9 @@ TextureImporter:
   - first:
       213: -1208348647371775848
     second: SquarePiece_889
+  - first:
+      213: 4881027689452653365
+    second: SquarePiece_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -3071,8 +3074,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ae5132ca7f4a97f0800000000000000
-      internalID: -605083811265290586
+      spriteID: 53bcba0a2d4ecb340800000000000000
+      internalID: 4881027689452653365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SquarePiece_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 2
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d560f0561bcd8a0800000000000000
+      internalID: -6278948732859425430
       vertices: []
       indices: 
       edges: []

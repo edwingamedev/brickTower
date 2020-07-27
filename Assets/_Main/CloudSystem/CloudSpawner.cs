@@ -12,6 +12,7 @@ namespace EdwinGameDev
         private float currentMoveTick;
         public GameObject cloudPrefab;
         public List<GameObject> clouds;
+        public Transform cloudHolder;
 
 
         // Update is called once per frame
@@ -31,7 +32,7 @@ namespace EdwinGameDev
             Vector3 spawnPos = dir ? new Vector3(gameGrid.gridMinX * 1.5f, Random.Range(gameGrid.currentGridBottom, gameGrid.currentGridTop)) : 
                                     new Vector3(gameGrid.gridMaxX * 1.5f, Random.Range(gameGrid.currentGridBottom, gameGrid.currentGridTop));
 
-            GameObject cloudGO = Instantiate(cloudPrefab, spawnPos, Quaternion.identity);
+            GameObject cloudGO = Instantiate(cloudPrefab, spawnPos, Quaternion.identity, cloudHolder);
             Cloud cloud = cloudGO.GetComponent<Cloud>();
 
             int randomSprite = Random.Range(0, cloudSprites.Length);

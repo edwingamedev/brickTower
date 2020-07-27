@@ -17,7 +17,7 @@ namespace EdwinGameDev
         private bool paused = true;
         public int towerHeight = 0;
         public BlockType nextBlock;
-        private Transform heightBlock;
+        private Transform highestBlock;
 
         public void SetPause(bool paused)
         {
@@ -87,7 +87,7 @@ namespace EdwinGameDev
 
             blocksOfSession.Clear();
             towerHeight = 0;
-            heightBlock = null;
+            highestBlock = null;
         }
 
         public void AddBlock(Block block)
@@ -127,37 +127,37 @@ namespace EdwinGameDev
             }
         }
 
-        public Transform GetHighestBlock()
+        public int GetHighestBlock()
         {
             // No Highest yet
-            if (heightBlock == null)
+            if (highestBlock == null)
             {
                 if (blocksOfSession.Any())
-                    heightBlock = blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition().transform;
+                    highestBlock = blocksOfSession.FirstOrDefault(b => b.placed).GetHighestPiecePosition().transform;
             }
             else
             {
-                Transform lastPlaceBlock = blocksOfSession[blocksOfSession.Count - 1].GetHighestPiecePosition().transform;
+                Transform lastPlaceBlock = blocksOfSession.LastOrDefault(b => b.placed).GetHighestPiecePosition().transform;
 
-                if (lastPlaceBlock.position.y > heightBlock.position.y)
+                if (lastPlaceBlock.position.y > highestBlock.position.y)
                 {
-                    heightBlock = lastPlaceBlock;
+                    highestBlock = lastPlaceBlock;
                 }
                 else
                 {
-                    Block block = blocksOfSession.FirstOrDefault(x => x.GetHighestPiecePosition().transform.position.y > heightBlock.position.y);
+                    Block block = blocksOfSession.FirstOrDefault(x => x.placed && x.GetHighestPiecePosition().transform.position.y > highestBlock.position.y);
 
                     if (block)
                     {
-                        heightBlock = block.higherPiece.transform;
+                        highestBlock = block.higherPiece.transform;
                     }
 
                 }
             }
 
-            towerHeight = Mathf.CeilToInt(heightBlock.position.y) -5;
+            towerHeight = Mathf.CeilToInt(highestBlock.position.y) - 5;
 
-            return heightBlock;
+            return towerHeight;
         }
     }
 }

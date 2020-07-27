@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb99a6c7dc564494c83f9ea9f961d9e6, type: 3}
   m_Name: Block Factory
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 11400000, guid: fd6d62dcbc277fb42835d2d2f9719a75, type: 2}
+  blockData: {fileID: 11400000, guid: fd6d62dcbc277fb42835d2d2f9719a75, type: 2}
   blockPrefab: {fileID: 6834594904365271028, guid: b90aec2c5954b2d4f8cb468a51d8598e,
     type: 3}

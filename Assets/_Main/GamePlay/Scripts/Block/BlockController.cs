@@ -17,7 +17,7 @@ namespace EdwinGameDev
 
     public class BlockController : MonoBehaviour
     {
-        public GameContainer gameContainer;
+        public GameData gameData;
         public BlockCommands blockCommands;
         private float currentDropTick;
         private void OnEnable()
@@ -46,33 +46,33 @@ namespace EdwinGameDev
             if (Time.time > currentDropTick)
             {
                 BlockMoveDown();
-                currentDropTick = Time.time + gameContainer.blockDropRate;
+                currentDropTick = Time.time + gameData.blockDropRate;
             }
         }
 
         public void BlockFellOff()
         {
-            gameContainer?.RemoveFallenBlocks();
+            gameData?.RemoveFallenBlocks();
         }
 
         public void BlockMoveLeft()
         {
-            gameContainer?.MoveBlock(MovementType.Left);
+            gameData?.MoveBlock(MovementType.Left);
         }
 
         public void BlockMoveRight()
         {
-            gameContainer?.MoveBlock(MovementType.Right);
+            gameData?.MoveBlock(MovementType.Right);
         }
 
         public void BlockMoveDown()
         {
-            gameContainer?.MoveBlock(MovementType.Down);
+            gameData?.MoveBlock(MovementType.Down);
         }
 
         public void BlockTurn()
         {
-            gameContainer?.RotateBlock();
+            gameData?.RotateBlock();
         }
     }
 }

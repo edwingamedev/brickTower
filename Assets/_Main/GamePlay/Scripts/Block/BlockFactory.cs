@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/BlockContainer")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Blocks/BlockContainer")]
     public class BlockFactory : ScriptableObject
     {
-        public GameSettings gameSettings;
+        public BlockData blockData;
         public GameObject blockPrefab;
 
         public Block SpawnBlock(BlockType blockType, Transform spawnPoint, Transform blockHolder)
@@ -18,7 +18,7 @@ namespace EdwinGameDev
             Vector2Int spawnPosition = new Vector2Int((int)spawnPoint.position.x, (int)spawnPoint.position.y);
             Piece[] blockPieces = GetBlockPieces(spawnPosition, blockType, blockGO.transform);
 
-            block.Build(spawnPosition, blockType, blockPieces, gameSettings.GetOffSet(blockType));
+            block.Build(spawnPosition, blockType, blockPieces, blockData.GetOffSet(blockType));
 
             return block;
         }
@@ -37,7 +37,7 @@ namespace EdwinGameDev
 
         private Piece[] GetBlockPieces(Vector2Int spawnPos, BlockType blockType, Transform parent)
         {
-            return gameSettings.GetBlockPieces(spawnPos, blockType, parent);
+            return blockData.GetBlockPieces(spawnPos, blockType, parent);
         }
     }
 }

@@ -8,21 +8,21 @@ namespace EdwinGameDev
 {
     public class BlockGridDisplay : MonoBehaviour
     {
-        public GameSettings gameSettings;
-        public GameContainer gameContainer;
+        public BlockData blockData;
+        public GameData gameData;
         public Image[] blocksprites;
         private Sprite currentBlockSprite;
 
         public void SetBlock()
         {
-            currentBlockSprite = gameSettings.GetSprite(gameContainer.nextBlock);
+            currentBlockSprite = blockData.GetSprite(gameData.nextBlock);
 
             foreach (Image blocksprite in blocksprites)
             {
                 blocksprite.sprite = currentBlockSprite;
             }
 
-            SetBlockVisual(gameContainer.nextBlock);
+            SetBlockVisual(gameData.nextBlock);
 
         }
 

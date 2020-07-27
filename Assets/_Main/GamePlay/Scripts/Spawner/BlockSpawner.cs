@@ -9,7 +9,7 @@ namespace EdwinGameDev
         public Transform spawnPoint;
         public Transform blockHolder;
         public BlockFactory blockFactory;
-        public GameContainer gameContainer;
+        public GameData gameData;
         private BlockType nextBlock;
 
         private void Awake()
@@ -21,16 +21,16 @@ namespace EdwinGameDev
 
         public void ResetGame()
         {
-            gameContainer.ResetGame();
+            gameData.ResetGame();
         }
 
         public void SpawnRandomBlock()
         {
             Block block = blockFactory.SpawnBlock(nextBlock, spawnPoint, blockHolder);
-            gameContainer.AddBlock(block);            
+            gameData.AddBlock(block);            
 
             nextBlock = blockFactory.GenerateRandomBlockType();
-            gameContainer.NextBlock(nextBlock);
+            gameData.NextBlock(nextBlock);
         }
     }
 }

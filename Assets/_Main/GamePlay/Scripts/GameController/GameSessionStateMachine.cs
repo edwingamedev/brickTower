@@ -12,7 +12,7 @@ namespace EdwinGameDev
         private Dictionary<GameStateType, IGameState> gameStates = new Dictionary<GameStateType, IGameState>();
         public GameScreens gameScreens;
         public StateCommandScriptableEvent gameSessionEvent;
-        public GameContainer gameContainer;
+        public GameData gameData;
 
         public ScriptableEvent OnStartGame;
         public ScriptableEvent OnPauseGame;
@@ -73,7 +73,7 @@ namespace EdwinGameDev
             Execute(StateCommandType.OpenScene);
 
             // Unpause
-            gameContainer.SetPause(false);
+            gameData.SetPause(false);
         }
 
         public void ResumeGame()
@@ -82,7 +82,7 @@ namespace EdwinGameDev
             Execute(StateCommandType.ResumeScene);
 
             // Unpause
-            gameContainer.SetPause(false);
+            gameData.SetPause(false);
         }
 
         public void PauseGame()
@@ -91,7 +91,7 @@ namespace EdwinGameDev
             Execute(StateCommandType.OpenScene);
 
             // Pause
-            gameContainer.SetPause(true);
+            gameData.SetPause(true);
         }
 
         private void WinGame()
@@ -101,7 +101,7 @@ namespace EdwinGameDev
             Execute(StateCommandType.OpenScene);
 
             // Pause
-            gameContainer.SetPause(true);
+            gameData.SetPause(true);
         }
 
         public void GameOver()
@@ -111,7 +111,7 @@ namespace EdwinGameDev
             Execute(StateCommandType.OpenScene);
 
             // Pause
-            gameContainer.SetPause(true);
+            gameData.SetPause(true);
         }
 
         public void ChangeGameState(GameStateType gameState)

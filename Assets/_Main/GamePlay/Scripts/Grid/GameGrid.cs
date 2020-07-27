@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EdwinGameDev
 {
-    [CreateAssetMenu(menuName = "Edwin Game Dev/GameBounds")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Data/GameBounds")]
     public class GameGrid : ScriptableObject
     {
         public int gridMinX;
@@ -14,8 +14,8 @@ namespace EdwinGameDev
         private int gridMinY = 0;
         private int gridMaxY = 40;
 
-        public int currentGridBottom;
-        public int currentGridTop;
+        [HideInInspector] public int currentGridBottom;
+        [HideInInspector] public int currentGridTop;
 
         public void ResetGrid()
         {

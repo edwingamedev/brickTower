@@ -18,7 +18,7 @@ namespace EdwinGameDev
         Keyboard
     }
 
-    [CreateAssetMenu(menuName = "Edwin Game Dev/InputMap")]
+    [CreateAssetMenu(menuName = "Edwin Game Dev/Inputs/InputMap")]
     public class InputMap : ScriptableObject
     {
         public InputTypeProcessor inputTypeProcessor;

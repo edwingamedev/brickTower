@@ -6,7 +6,7 @@ namespace EdwinGameDev
 {
     public class GameScore : MonoBehaviour
     {
-        public GameContainer gameContainer;
+        public GameData gameData;
 
         public ScriptableEvent noMoreLivesEvent;
         public ScriptableEvent gameWonEvent;
@@ -29,7 +29,7 @@ namespace EdwinGameDev
 
         public void ResetLives()
         {
-            for (int i = currentLives; i < gameContainer.numOfLives; i++)
+            for (int i = currentLives; i < gameData.numOfLives; i++)
             {
                 AddLife();
             }
@@ -79,7 +79,7 @@ namespace EdwinGameDev
         public void CheckWinCondition()
         {
             // Won
-            if (gameContainer.towerHeight >= gameContainer.heightToWin)
+            if (gameData.towerHeight >= gameData.heightToWin)
                 gameWonEvent.Trigger();
         }
 

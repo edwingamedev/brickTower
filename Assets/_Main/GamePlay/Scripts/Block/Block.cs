@@ -22,8 +22,8 @@ namespace EdwinGameDev
         private RigidbodyType2D previousBodyType = RigidbodyType2D.Kinematic;
         private bool previousSimulated = false;
 
-        [HideInInspector]
-        public bool fellOff = false;
+        [HideInInspector] public bool fellOff = false;
+        [HideInInspector] public bool placed = false;
         private bool isPlayableBlock = true;
 
 
@@ -230,6 +230,8 @@ namespace EdwinGameDev
         /// </summary>
         private void PlaceBlock()
         {
+            placed = true;
+
             EnablePhysics();
 
             onBlockSet.Trigger();

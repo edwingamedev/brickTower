@@ -55,7 +55,7 @@ namespace EdwinGameDev
 
         public void Execute(StateCommandType commandType)
         {
-            Debug.Log($"{currentGameStatus} Screen execute: {commandType}");
+            //Debug.Log($"{currentGameStatus} Screen execute: {commandType}");
 
             // Use the loop of the current game state
             gameStates[currentGameStatus].Execute(commandType);

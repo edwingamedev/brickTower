@@ -119,7 +119,6 @@ namespace EdwinGameDev
                         return false;
 
                     case MovementRestriction.CannotMove:
-                        //Debug.Log("Cant Go there!");
 
                         if (movement.y < 0)
                         {

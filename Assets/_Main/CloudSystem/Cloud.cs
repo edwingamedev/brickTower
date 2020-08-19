@@ -56,13 +56,13 @@ namespace EdwinGameDev
                 // Left
                 if (gameObject.transform.position.x < gameGrid.gridMinX * 2)
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
 
                 // Right
                 if (gameObject.transform.position.x > gameGrid.gridMaxX * 2)
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
             }
         }

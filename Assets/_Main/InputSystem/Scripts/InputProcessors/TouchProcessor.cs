@@ -40,7 +40,7 @@ namespace EdwinGameDev
 
         public bool Release()
         {
-            return false;// touchDetector.DetectTouch(InputType.Release, false);
+            return false;
         }
 
         public bool Hold()

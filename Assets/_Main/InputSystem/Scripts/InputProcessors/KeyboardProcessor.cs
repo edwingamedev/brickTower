@@ -41,7 +41,29 @@ namespace EdwinGameDev
 
         public InputType CheckInputByType()
         {
-            return 0;
+            if (Hold()) 
+                return InputType.Hold;
+
+            if (Release())
+                return InputType.Release;
+
+            if (Click())
+                return InputType.Click;
+
+            if (Up())
+                return InputType.Up;
+
+            if (Down())
+                return InputType.Down;
+
+            if (Right())
+                return InputType.Right;
+
+            if (Left())
+                return InputType.Left;
+
+
+            return InputType.NoInput;
         }
     }
 }

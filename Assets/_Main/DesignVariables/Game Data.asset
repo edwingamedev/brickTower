@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Game Data
   m_EditorClassIdentifier: 
   numOfLives: 5
-  heightToWin: 5
+  heightToWin: 40
   blockMovement:
-    horizontal: 2
+    horizontal: 0.5
     vertical: 0.5
-  blockDropRate: 1
-  towerHeight: 2
-  nextBlock: 5
+  blockDropRate: 0.2
+  towerHeight: 6
+  nextBlock: 4

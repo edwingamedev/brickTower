@@ -20,18 +20,10 @@ namespace EdwinGameDev
         private void UpdateInputMap()
         {
             CheckInputProcessorType();
-
-            if (inputMap.inputTypeProcessor == InputTypeProcessor.Touch)
-            {
-                ValidateTouchInput();
-            }
-            else
-            {
-                ValidateInput();
-            }            
+            ValidateInput();
         }
 
-        private void ValidateTouchInput()
+        private void ValidateInput()
         {
             InputType inputType = inputProcessor.CheckInputByType();
 
@@ -47,54 +39,6 @@ namespace EdwinGameDev
                     action.Trigger();
                 }
             }            
-        }
-
-        private void ValidateInput()
-        {
-            foreach (InputMapper inputMapper in inputMap.eventMappers)
-            {
-                InputType inputType = inputMapper.inputType;
-
-                bool execute;
-
-                switch (inputType)
-                {
-                    //Execute actions
-                    case InputType.Left:
-                        execute = inputProcessor.Left();
-                        break;
-                    case InputType.Right:
-                        execute = inputProcessor.Right();
-                        break;
-                    case InputType.Up:
-                        execute = inputProcessor.Up();
-                        break;
-                    case InputType.Down:
-                        execute = inputProcessor.Down();
-                        break;
-                    case InputType.Release:
-                        execute = inputProcessor.Release();
-                        break;
-                    case InputType.Click:
-                        execute = inputProcessor.Click();
-                        break;
-                    case InputType.Hold:
-                        execute = inputProcessor.Hold();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                if (!execute) continue;
-
-                ScriptableEvent action = inputMapper.scriptableEvent;
-
-                //Execute the action
-                if (action)
-                {
-                    action.Trigger();
-                }
-            }
         }
 
         /// <summary>
